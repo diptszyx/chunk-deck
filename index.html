@@ -88,7 +88,7 @@
   .meter b { color: var(--ink); font-weight: 700; }
   .sync { font-size: 12px; color: var(--ink-faint); }
 
-  nav.modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: var(--inset); padding: 4px; border-radius: 12px; }
+  nav.modes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: var(--inset); padding: 4px; border-radius: 12px; }
   nav.modes button {
     font: 700 14px/1.2 var(--body); color: var(--ink-dim); background: transparent; border: 0;
     padding: 10px 6px; border-radius: 9px; cursor: pointer;
@@ -150,30 +150,33 @@
   .weave { display: flex; flex-wrap: wrap; gap: 6px; }
   .weave span { font-size: 14px; padding: 5px 10px; border-radius: 999px; border: 1px dashed var(--accent); color: var(--accent); }
 
-  .heard { font-size: 14px; color: var(--ink-dim); display: flex; flex-direction: column; gap: 6px; }
-  .heard .live { font-size: 18px; color: var(--ink); min-height: 1.5em; }
-  .results { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
-  .results th { text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); padding: 6px 4px; border-bottom: 1px solid var(--line); }
-  .results td { padding: 8px 4px; border-bottom: 1px solid var(--line); }
-  .results td.num { font-family: var(--mono); font-weight: 700; }
-  .results audio { height: 32px; max-width: 150px; }
-  .verdict { font-size: 14px; margin: 0; padding: 10px 12px; border-radius: 10px; background: var(--accent-soft); }
-  .rec-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--miss); margin-right: 6px; }
   details.guide { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; font-size: 14px; }
   details.guide summary { cursor: pointer; font-weight: 700; }
   details.guide ol { padding-left: 20px; margin: 10px 0; display: flex; flex-direction: column; gap: 6px; }
   details.guide p { margin: 8px 0 0; color: var(--ink-dim); max-width: 65ch; }
+  .cloze { font-size: 22px; line-height: 1.4; margin: 0; text-wrap: balance; }
+  .cloze .gap { display: inline-block; min-width: 3.5em; border-bottom: 3px solid var(--accent); }
+  .cloze mark { background: none; color: var(--accent); font-weight: 700; }
+  .word-big { font-family: var(--display); font-weight: 800; font-size: 34px; margin: 0; letter-spacing: -0.01em; }
+  .def { font-size: 14px; color: var(--ink-dim); margin: 0; }
+  .def i { color: var(--ink-faint); font-style: normal; font-size: 12px; }
+  .triage { display: flex; flex-wrap: wrap; gap: 8px; }
+  .triage button { font: 700 15px/1 var(--body); padding: 10px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .triage button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); text-decoration: line-through; }
+  .progress { height: 6px; border-radius: 3px; background: var(--inset); overflow: hidden; }
+  .progress span { display: block; height: 100%; background: var(--accent); }
+  footer.credit { font-size: 12px; color: var(--ink-faint); max-width: 65ch; }
+  footer.credit a { color: var(--ink-dim); }
   .why { font-size: 13px; color: var(--ink-dim); border-top: 1px solid var(--line); padding-top: 14px; margin: 0; max-width: 65ch; }
   .why b { color: var(--ink); }
   .warn { font-size: 13px; color: var(--miss); margin: 0; }
 
+  @media (max-width: 480px) { nav.modes { grid-template-columns: repeat(2, 1fr); } }
   @media (prefers-reduced-motion: no-preference) {
     .answer, .diff { animation: rise .18s ease-out; }
     @keyframes rise { from { transform: translateY(4px); opacity: .6; } to { transform: none; opacity: 1; } }
   }
-</style>
-
-</head>
+</style></head>
 <body>
 <div class="app">
   <header class="top">
@@ -183,11 +186,11 @@
       <span>Đã thuộc <b id="mKnown">0</b>/<b id="mTotal">0</b></span>
     </div>
   </header>
-  <p class="sync" id="syncNote">Tiến độ lưu trên trình duyệt này — dùng cùng một trình duyệt để giữ lịch ôn.</p>
 
   <nav class="modes" role="tablist" aria-label="Chế độ luyện">
-    <button role="tab" id="tabReview" aria-selected="true">Ôn cụm<small>nhớ lại, rồi nghe</small></button>
-    <button role="tab" id="tabDict" aria-selected="false">Nghe chép<small>tách từ trong câu nói</small></button>
+    <button role="tab" id="tabWords" aria-selected="true">Từ vựng<small>718 từ phủ 90% hội thoại</small></button>
+    <button role="tab" id="tabReview" aria-selected="false">Cụm<small>nhớ lại cả khối</small></button>
+    <button role="tab" id="tabDict" aria-selected="false">Nghe chép<small>nghe, gõ lại, đối chiếu</small></button>
     <button role="tab" id="tabSpeak" aria-selected="false">Nói 4/3/2<small>1 chuyện, 3 lần</small></button>
   </nav>
 
@@ -196,175 +199,121 @@
   <details class="guide" id="guide">
     <summary>Mỗi ngày học thế nào — khoảng 45 phút</summary>
     <ol>
-      <li><b>Ôn cụm, 10–15 phút.</b> Làm hết cụm đến hạn cộng tối đa 10 cụm mới. Luôn nói to trước khi mở đáp án.</li>
-      <li><b>Nghe chép, 10 phút.</b> Khoảng 15 câu. Để ý chỗ đỏ lặp lại — đó là kiểu nối âm tai bạn chưa quen.</li>
-      <li><b>Nói 4/3/2, khoảng 12 phút.</b> Một chủ đề, đủ ba lần, rồi nghe lại lần 1 và lần 3.</li>
-      <li><b>Nghe người thật, 10–15 phút.</b> Video tiếng Anh có phụ đề tiếng Anh, chủ đề bạn thật sự thích. Giọng máy trong app không nối âm như người thật; phần này bù vào chỗ đó.</li>
+      <li><b>Từ vựng, 10 phút.</b> Lần đầu, lọc bỏ những từ đã biết. Sau đó mỗi ngày: hết từ đến hạn + tối đa 10 từ mới.</li>
+      <li><b>Cụm, 10 phút.</b> Hết cụm đến hạn + tối đa 10 cụm mới. Nói to trước khi mở đáp án.</li>
+      <li><b>Nghe chép, 10 phút.</b> Khoảng 15 câu. Chỗ đỏ lặp lại là kiểu âm tai bạn chưa bắt được.</li>
+      <li><b>Nói 4/3/2, khoảng 10 phút.</b> Một chủ đề, đủ ba lần, nói to thành tiếng.</li>
+      <li><b>Nghe người thật, 5–10 phút.</b> Video tiếng Anh có phụ đề tiếng Anh. Giọng máy trong app không nối âm như người thật; phần này bù vào đó.</li>
     </ol>
-    <p>Mỗi thành phần có nghiên cứu phía sau; <b>số phút là do tôi chia</b>, không phải một giáo trình đã được kiểm chứng. Đều đặn quan trọng hơn dài: ngày bận thì chỉ làm bước 1 và 3, đừng bỏ hẳn.</p>
-    <p>Mỗi tuần, so số từ/phút ở <b>lần 1</b> của 4/3/2 với tuần trước. Lần 1 là lúc chưa tập, nên nó cho thấy khả năng nói thật đang lên hay không.</p>
+    <p>Mỗi phần có nghiên cứu phía sau; <b>số phút là do người làm app chia</b>, không phải giáo trình đã được kiểm chứng. Đều đặn quan trọng hơn dài — ngày bận chỉ làm bước 1 và 2.</p>
   </details>
 
   <p class="why" id="why"></p>
+
+  <footer class="credit">
+    Danh sách 718 từ và định nghĩa tiếng Anh: <a href="https://www.newgeneralservicelist.com/ngsl-spoken">NGSL-Spoken 1.2</a> (Browne, Culligan &amp; Phillips), giấy phép CC BY-SA 4.0.
+    Nghĩa tiếng Việt, câu ví dụ và các cụm do người làm app viết, chưa qua người bản ngữ kiểm tra.
+    Giọng đọc là giọng máy của trình duyệt. Tiến độ lưu trên trình duyệt này.
+  </footer>
 </div>
 
+<script src="data/chunks.js"></script>
+<script src="data/words.js"></script>
 <script>
 (() => {
-  const DECK = [
-    ["Mở đầu, giữ lượt", "Ý là…, vấn đề là…", "The *thing* is…", ""],
-    ["Mở đầu, giữ lượt", "Tôi định nói là…", "I was *gonna* say…", "was <b>gonna</b> = going to"],
-    ["Mở đầu, giữ lượt", "Để tôi nói cách khác", "Let me put it *another* way", "let me → <b>lemme</b>"],
-    ["Mở đầu, giữ lượt", "Chờ chút, để tôi nghĩ", "Give me a *second*", "give me → <b>gimme</b>"],
-    ["Mở đầu, giữ lượt", "Nói thật là…", "To be *honest*…", ""],
-    ["Mở đầu, giữ lượt", "Về cơ bản là…", "*Basically*…", ""],
-    ["Mở đầu, giữ lượt", "Còn chuyện…thì sao?", "What about…?", "what about → <b>whaddabout</b>"],
-    ["Mở đầu, giữ lượt", "Quay lại chuyện lúc nãy", "Going *back* to what you said", ""],
-    ["Kiểm tra hiểu", "Bạn hiểu ý tôi không?", "Does that make *sense*?", ""],
-    ["Kiểm tra hiểu", "Bạn nói lại được không?", "Could you say that *again*?", "could you → <b>couldja</b>"],
-    ["Kiểm tra hiểu", "Ý bạn là…?", "Do you *mean*…?", "do you → <b>d'you</b>"],
-    ["Kiểm tra hiểu", "Nói chậm hơn chút được không?", "Could you speak a bit *slower*?", ""],
-    ["Kiểm tra hiểu", "Tôi không chắc đã hiểu đúng", "I'm not *sure* I follow", ""],
-    ["Kiểm tra hiểu", "Để tôi xem mình hiểu đúng không", "Let me make *sure* I got this right", "got this → <b>gotthis</b>"],
-    ["Kiểm tra hiểu", "…nghĩa là gì?", "What does … *mean*?", "what does → <b>whuzz</b>"],
-    ["Đồng ý, phản đối", "Đúng rồi, chính xác", "*Exactly*", ""],
-    ["Đồng ý, phản đối", "Ý hay đấy, nhưng…", "That's a good *point*, but…", ""],
-    ["Đồng ý, phản đối", "Không hẳn, đúng hơn là…", "Not *really*, it's more like…", ""],
-    ["Đồng ý, phản đối", "Tôi hiểu ý bạn, nhưng…", "I *see* what you mean, but…", ""],
-    ["Đồng ý, phản đối", "Còn tuỳ vào…", "It *depends* on…", ""],
-    ["Đồng ý, phản đối", "Tôi cũng nghĩ vậy", "I think *so* too", ""],
-    ["Đồng ý, phản đối", "Tôi không nghĩ vậy", "I don't think *so*", "don't → <b>dun</b>"],
-    ["Đồng ý, phản đối", "Có lý đấy", "That makes *sense*", ""],
-    ["Đồng ý, phản đối", "Tôi không chắc lắm về chuyện đó", "I'm not *so* sure about that", ""],
-    ["Giải thích", "Lý do là…", "The *reason* is…", ""],
-    ["Giải thích", "Ví dụ như là…", "For *example*…", ""],
-    ["Giải thích", "Nói cách khác…", "In *other* words…", ""],
-    ["Giải thích", "Vấn đề chính là…", "The *main* problem is…", ""],
-    ["Giải thích", "Điều quan trọng là…", "What *matters* is…", ""],
-    ["Giải thích", "Nói ngắn gọn thì…", "*Long* story short…", ""],
-    ["Giải thích", "Khoảng chừng…", "*Roughly*…", ""],
-    ["Giải thích", "Thứ nhất…, thứ hai…", "*First*…, and *second*…", ""],
-    ["Giải thích", "Hoá ra là…", "It *turns* out that…", "turns out → <b>turnzout</b>"],
-    ["Giải thích", "Mấu chốt là…", "The *point* is…", ""],
-    ["Hỏi, nhờ", "Bạn giúp tôi… được không?", "Could you *help* me with…?", ""],
-    ["Hỏi, nhờ", "Bạn có phiền nếu…?", "Do you *mind* if I…?", "do you → <b>d'you</b>"],
-    ["Hỏi, nhờ", "Tôi hỏi một câu được không?", "Can I ask you *something*?", "can I → <b>c'nI</b>"],
-    ["Hỏi, nhờ", "Bạn nghĩ sao về…?", "What do you *think* about…?", "what do you → <b>whaddaya</b>"],
-    ["Hỏi, nhờ", "Có cách nào để…?", "Is there a *way* to…?", ""],
-    ["Hỏi, nhờ", "Bạn có biết… không?", "Do you *happen* to know…?", ""],
-    ["Hỏi, nhờ", "Tôi nên làm gì tiếp?", "What should I do *next*?", ""],
-    ["Hỏi, nhờ", "Mất bao lâu?", "How *long* does it take?", ""],
-    ["Công việc", "Để tôi xem lại rồi báo bạn", "Let me *check* and get back to you", "get back to you → <b>getbackta ya</b>"],
-    ["Công việc", "Tôi đang làm việc đó", "I'm *working* on it", ""],
-    ["Công việc", "Gần xong rồi", "It's *almost* done", ""],
-    ["Công việc", "Tôi gặp một vấn đề", "I *ran* into a problem", "ran into → <b>ranninto</b>"],
-    ["Công việc", "Chắc là do…", "It's *probably* because…", ""],
-    ["Công việc", "Tôi sẽ lo việc đó", "I'll *take* care of it", ""],
-    ["Công việc", "Mình chốt vậy nhé?", "Are we *good* with that?", ""],
-    ["Công việc", "Tôi cần thêm thời gian", "I need a bit more *time*", ""],
-    ["Công việc", "Để tôi chia sẻ màn hình", "Let me share my *screen*", ""],
-    ["Công việc", "Bạn nghe rõ không?", "Can you *hear* me okay?", ""],
-    ["Công việc", "Tôi vừa mới làm xong", "I *just* finished it", ""],
-    ["Chuyện hằng ngày", "Dạo này thế nào?", "How's it *going*?", "how's it → <b>howzit</b>"],
-    ["Chuyện hằng ngày", "Không tệ, còn bạn?", "Not *bad*, you?", ""],
-    ["Chuyện hằng ngày", "Bạn đang bận gì thế?", "What have you been *up* to?", "what have you → <b>whaddaya</b>"],
-    ["Chuyện hằng ngày", "Nghe hay đấy", "Sounds *good*", ""],
-    ["Chuyện hằng ngày", "Không sao đâu", "No *worries*", ""],
-    ["Chuyện hằng ngày", "Cảm ơn nhiều nhé", "Thanks a *lot*", "thanks a → <b>thanksa</b>"],
-    ["Chuyện hằng ngày", "Xin lỗi, tôi đến muộn", "Sorry I'm *late*", ""],
-    ["Chuyện hằng ngày", "Hẹn gặp lại sau", "See you *later*", "see you → <b>seeya</b>"],
-    ["Chuyện hằng ngày", "Tôi cũng vậy", "*Same* here", ""],
-    ["Chuyện hằng ngày", "Tuỳ bạn", "It's *up* to you", ""],
-    ["Chuyện hằng ngày", "Tôi không có ý đó", "That's not what I *meant*", ""],
-    ["Chuyện hằng ngày", "Để lần sau nhé", "Maybe *next* time", ""],
-    ["Kết thúc", "Tóm lại là…", "So *basically*…", ""],
-    ["Kết thúc", "Vậy thôi, hết rồi", "That's about *it*", "that's about → <b>thadzabout</b>"],
-    ["Kết thúc", "Còn gì nữa không?", "Anything *else*?", ""],
-    ["Kết thúc", "Mình nói chuyện sau nhé", "Let's talk *later*", ""],
-    ["Kết thúc", "Rất vui được nói chuyện với bạn", "It was *nice* talking to you", ""],
-    ["Kết thúc", "Giữ liên lạc nhé", "Let's keep in *touch*", ""],
-  ].map(([sit, vi, en, reduced], i) => ({ id: "c" + i, sit, vi, en, reduced }));
+  const CHUNKS = (window.CHUNKS || []).map(([sit, vi, en, reduced], i) => ({ id: "c" + i, sit, vi, en, reduced }));
+  const WORDS = (window.WORDS || []).map(([word, vi, example, def], i) => ({ id: "w:" + word, rank: i + 1, word, vi, example, def }));
 
   const TOPICS = [
     "Kể về một ngày làm việc bình thường của bạn.",
-    "Một lỗi khó nhất bạn từng sửa: nó là gì, và bạn tìm ra nó thế nào?",
     "Một món ăn bạn thích — nó là gì, ăn ở đâu, vì sao thích.",
-    "Nơi bạn đang sống: điểm tốt và điểm không tốt.",
+    "Nơi bạn đang sống: điểm tốt và điểm chưa tốt.",
     "Một thứ bạn học được gần đây và vì sao nó hữu ích.",
     "Kế hoạch của bạn cho năm tới.",
-    "Một cuốn sách, bộ phim hay kênh YouTube bạn giới thiệu cho người khác.",
+    "Một bộ phim hay kênh YouTube bạn muốn giới thiệu cho người khác.",
     "Một quyết định khó bạn từng phải đưa ra.",
-    "Giải thích công việc của bạn cho người không biết gì về lập trình.",
+    "Giải thích công việc của bạn cho một người không làm cùng ngành.",
     "Một chuyến đi đáng nhớ.",
+    "Cuối tuần lý tưởng của bạn trông như thế nào.",
+    "Một người đã ảnh hưởng nhiều đến bạn.",
+    "Một thói quen bạn muốn bỏ, và vì sao khó bỏ.",
   ];
 
   const INTERVAL_DAYS = [0, 1, 3, 7, 16, 35, 75];
   const KNOWN_BOX = 3;
   const NEW_PER_DAY = 10;
+  const TRIAGE_BATCH = 30;
   const DAY_MS = 86400000;
+  const AGAIN_MS = 10 * 60 * 1000;
   const PHASE_SECONDS = [240, 180, 120];
   const LOCAL_KEY = "chunkdeck_progress_v1";
-
-  let state = { cards: {}, newDay: "", newCount: 0 };
-    let mode = "review";
 
   const $ = (id) => document.getElementById(id);
   const today = () => new Date().toISOString().slice(0, 10);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const stressed = (en) => esc(en).replace(/\*(.+?)\*/g, '<span class="s">$1</span>');
   const plain = (en) => en.replace(/\*/g, "");
+  const unbrace = (s) => s.replace(/[{}]/g, "");
+  const startOfDay = () => { const d = new Date(); d.setHours(4, 0, 0, 0); return d.getTime(); };
 
-  function loadLocal() {
-    try { return JSON.parse(localStorage.getItem(LOCAL_KEY) || "null"); } catch { return null; }
+  function loadState() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(LOCAL_KEY) || "null"); } catch {}
+    const base = { cards: {}, newDay: "", newCount: { chunk: 0, word: 0 }, triagedUpTo: 0 };
+    if (!saved || !saved.cards) return base;
+    const newCount = typeof saved.newCount === "number" ? { chunk: saved.newCount, word: 0 } : { ...base.newCount, ...saved.newCount };
+    return { cards: saved.cards, newDay: saved.newDay || "", newCount, triagedUpTo: saved.triagedUpTo || 0 };
   }
-  function saveLocal(s) {
-    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(s)); } catch {}
-  }
+  let state = loadState();
+  function persist() { try { localStorage.setItem(LOCAL_KEY, JSON.stringify(state)); } catch {} }
 
-  function persist() {
-    const snapshot = JSON.parse(JSON.stringify(state));
-    saveLocal(snapshot);
-  }
+  const cardState = (id) => state.cards[id] || null;
+  const isDue = (id, now) => { const c = cardState(id); return !!c && c.due <= now; };
+  const deckOf = (kind) => (kind === "word" ? WORDS : CHUNKS);
 
-  function cardState(id) { return state.cards[id] || null; }
-  function isDue(id, now) { const c = cardState(id); return !!c && c.due <= now; }
-
-  function nextCard() {
-    const now = Date.now();
-    const due = DECK.filter((c) => isDue(c.id, now)).sort((a, b) => cardState(a.id).due - cardState(b.id).due);
+  function nextCard(kind) {
+    const deck = deckOf(kind), now = Date.now();
+    const due = deck.filter((c) => isDue(c.id, now)).sort((a, b) => cardState(a.id).due - cardState(b.id).due);
     if (due.length) return { card: due[0], isNew: false };
-    if (state.newDay !== today()) { state.newDay = today(); state.newCount = 0; }
-    if (state.newCount >= NEW_PER_DAY) return null;
-    const fresh = DECK.find((c) => !cardState(c.id));
+    if (state.newDay !== today()) state = { ...state, newDay: today(), newCount: { chunk: 0, word: 0 } };
+    if (state.newCount[kind] >= NEW_PER_DAY) return null;
+    const fresh = deck.find((c) => !cardState(c.id));
     return fresh ? { card: fresh, isNew: true } : null;
   }
 
-  function grade(id, verdict) {
+  function grade(kind, id, verdict) {
     const prev = cardState(id);
     let box = prev ? prev.box : 0;
-    if (!prev) state.newCount += 1;
+    const newCount = prev ? state.newCount : { ...state.newCount, [kind]: state.newCount[kind] + 1 };
     if (verdict === "again") box = 1;
     else if (verdict === "good") box = Math.min(box + 1, INTERVAL_DAYS.length - 1);
     else box = Math.max(box, 1);
-    const days = verdict === "again" ? 0 : INTERVAL_DAYS[box];
-    const due = verdict === "again" ? Date.now() + 10 * 60 * 1000 : startOfDay() + days * DAY_MS;
-    state.cards = { ...state.cards, [id]: { box, due } };
+    const due = verdict === "again" ? Date.now() + AGAIN_MS : startOfDay() + INTERVAL_DAYS[box] * DAY_MS;
+    state = { ...state, newCount, cards: { ...state.cards, [id]: { box, due } } };
     persist();
   }
-  function startOfDay() { const d = new Date(); d.setHours(4, 0, 0, 0); return d.getTime(); }
 
+  function markKnown(ids, upToRank) {
+    const due = startOfDay() + INTERVAL_DAYS[INTERVAL_DAYS.length - 1] * DAY_MS;
+    const added = Object.fromEntries(ids.map((id) => [id, { box: INTERVAL_DAYS.length - 1, due, known: true }]));
+    state = { ...state, triagedUpTo: Math.max(state.triagedUpTo, upToRank), cards: { ...state.cards, ...added } };
+    persist();
+  }
+
+  let mode = "words";
   function renderMeter() {
+    const deck = mode === "chunks" || mode === "dict" || mode === "speak" ? CHUNKS : WORDS;
     const now = Date.now();
-    $("mDue").textContent = DECK.filter((c) => isDue(c.id, now)).length;
-    $("mKnown").textContent = DECK.filter((c) => (cardState(c.id)?.box || 0) >= KNOWN_BOX).length;
-    $("mTotal").textContent = DECK.length;
+    $("mDue").textContent = deck.filter((c) => isDue(c.id, now)).length;
+    $("mKnown").textContent = deck.filter((c) => (cardState(c.id)?.box || 0) >= KNOWN_BOX).length;
+    $("mTotal").textContent = deck.length;
   }
 
   let voice = null;
   function pickVoice() {
     const all = window.speechSynthesis ? speechSynthesis.getVoices() : [];
     voice = all.find((v) => /en-US/i.test(v.lang) && /natural|google|samantha|aria|jenny/i.test(v.name))
-      || all.find((v) => /en-US/i.test(v.lang))
-      || all.find((v) => /^en/i.test(v.lang)) || null;
+      || all.find((v) => /en-US/i.test(v.lang)) || all.find((v) => /^en/i.test(v.lang)) || null;
   }
   if (window.speechSynthesis) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
   const canSpeak = () => !!window.speechSynthesis;
@@ -378,109 +327,137 @@
     speechSynthesis.speak(u);
   }
 
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const canHear = () => !!SR;
-  const MIC_ERRORS = {
-    "not-allowed": "Trình duyệt chưa được phép dùng micro. Bấm biểu tượng ổ khoá cạnh địa chỉ trang để cho phép.",
-    "no-speech": "Không nghe thấy gì. Nói gần micro hơn rồi thử lại.",
-    "network": "Nhận dạng giọng nói cần internet.",
-  };
-  function listenOnce(onLive) {
-    return new Promise((resolve, reject) => {
-      const r = new SR();
-      r.lang = "en-US"; r.interimResults = true; r.maxAlternatives = 1;
-      let finalText = "";
-      r.onresult = (e) => {
-        let text = "";
-        for (const res of e.results) { text += res[0].transcript; if (res.isFinal) finalText = text; }
-        onLive(text);
-      };
-      r.onerror = (e) => reject(e.error);
-      r.onend = () => resolve(finalText);
-      r.start();
-    });
+  function gradeButtons(kind, card, onDone) {
+    const box = cardState(card.id)?.box || 0;
+    const nextGood = INTERVAL_DAYS[Math.min(box + 1, INTERVAL_DAYS.length - 1)];
+    return {
+      html: `<div class="row" id="grades">
+          <button class="btn again" id="gAgain">Chưa nhớ</button>
+          <button class="btn" id="gHard">Nhớ, nhưng khó</button>
+          <button class="btn good" id="gGood">Nhớ dễ</button>
+        </div>
+        <p class="grade-note">Chưa nhớ → gặp lại sau 10 phút · Nhớ dễ → gặp lại sau ${nextGood} ngày</p>`,
+      wire() {
+        const go = (v) => { grade(kind, card.id, v); renderMeter(); onDone(); };
+        $("gAgain").onclick = () => go("again");
+        $("gHard").onclick = () => go("hard");
+        $("gGood").onclick = () => go("good");
+      },
+    };
   }
 
-  function renderReview() {
-    const pick = nextCard();
-    const stage = $("stage");
+  function listenButtons(text) {
+    if (!canSpeak()) return "";
+    return `<div class="row"><button class="btn icon" data-say="1">▶ Nghe</button><button class="btn icon" data-say="0.75">Nghe chậm</button></div>`;
+  }
+  function wireListen(text) {
+    document.querySelectorAll("[data-say]").forEach((b) => { b.onclick = () => say(text, Number(b.dataset.say)); });
+  }
+
+  function doneScreen(what, next) {
+    $("stage").innerHTML = `<div class="done"><strong>Xong phần ${what} hôm nay.</strong>
+      <p class="hint">Lịch ôn giãn dần theo khoảng cách — ôn lại cùng một thứ mỗi ngày là lãng phí.
+      Quay lại ngày mai, hoặc chuyển sang <b>${next}</b>.</p></div>`;
+  }
+
+  function untriagedWords() { return WORDS.filter((w) => w.rank > state.triagedUpTo && !cardState(w.id)); }
+
+  function renderTriage() {
+    const batch = untriagedWords().slice(0, TRIAGE_BATCH);
+    if (!batch.length) { renderWords(); return; }
+    const touched = state.triagedUpTo;
+    const known = new Set();
+    $("stage").innerHTML = `
+      <span class="eyebrow">Lọc từ đã biết · từ #${batch[0].rank}–#${batch[batch.length - 1].rank} theo độ phổ biến</span>
+      <div class="progress" aria-hidden="true"><span style="width:${(touched / WORDS.length) * 100}%"></span></div>
+      <p class="hint">Bấm vào những từ bạn <b>chắc chắn đã biết</b> — nghe hiểu ngay và tự dùng được. Không chắc thì để nguyên; từ để nguyên sẽ được đưa vào học.</p>
+      <div class="triage" id="triage">${batch.map((w) => `<button aria-pressed="false" data-id="${esc(w.id)}" title="${esc(w.vi)}">${esc(w.word)}</button>`).join("")}</div>
+      <div class="row">
+        <button class="btn primary" id="saveTriage">Lưu, rồi học những từ còn lại</button>
+        <button class="btn" id="skipTriage">Bỏ qua, học luôn</button>
+      </div>`;
+    $("triage").onclick = (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      const on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", on);
+      on ? known.add(b.dataset.id) : known.delete(b.dataset.id);
+    };
+    const lastRank = batch[batch.length - 1].rank;
+    $("saveTriage").onclick = () => { markKnown([...known], lastRank); renderMeter(); renderWords(true); };
+    $("skipTriage").onclick = () => renderWords(true);
+  }
+
+  function renderWords(skipTriage) {
+    const untouched = untriagedWords().length;
+    const neverStarted = state.triagedUpTo === 0 && !WORDS.some((w) => cardState(w.id));
+    if (!skipTriage && neverStarted) { renderTriage(); return; }
+    const pick = nextCard("word");
     if (!pick) {
-      stage.innerHTML = `<div class="done"><strong>Xong phần hôm nay.</strong>
-        <p class="hint">Lịch ôn giãn dần theo khoảng cách — ôn lại cùng một cụm mỗi ngày là lãng phí.
-        Quay lại ngày mai, hoặc chuyển sang <b>Nghe chép</b> để luyện tai.</p></div>`;
+      doneScreen("từ vựng", "Cụm");
+      if (untouched) $("stage").insertAdjacentHTML("beforeend",
+        `<div class="row"><button class="btn" id="moreTriage">Lọc thêm ${Math.min(TRIAGE_BATCH, untouched)} từ tiếp theo</button></div>`);
+      const more = $("moreTriage"); if (more) more.onclick = renderTriage;
       return;
     }
     const { card, isNew } = pick;
-    stage.innerHTML = `
+    const blanked = esc(card.example).replace(/\{[^}]+\}/g, '<span class="gap"></span>');
+    const full = esc(card.example).replace(/\{([^}]+)\}/g, "<mark>$1</mark>");
+    const g = gradeButtons("word", card, () => renderWords(true));
+    $("stage").innerHTML = `
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <span class="situation">Từ #${card.rank}</span>
+        <span class="eyebrow">${isNew ? "Từ mới" : "Đến hạn ôn"}</span>
+      </div>
+      <p class="cloze">${blanked}</p>
+      <p class="hint">Nghĩa: <b>${esc(card.vi)}</b>. Nói to cả câu với từ còn thiếu, rồi mở đáp án.</p>
+      <div id="reveal" hidden></div>
+      <div class="row" id="actions"><button class="btn primary" id="showBtn">Mở đáp án</button>
+        ${untouched ? `<button class="btn" id="goTriage">Lọc từ đã biết</button>` : ""}</div>`;
+    const goT = $("goTriage"); if (goT) goT.onclick = renderTriage;
+    $("showBtn").onclick = () => {
+      $("reveal").hidden = false;
+      $("reveal").innerHTML = `<div class="answer">
+          <p class="word-big">${esc(card.word)}</p>
+          <p class="cloze">${full}</p>
+          ${card.def ? `<p class="def">${esc(card.def)} <i>— NGSL</i></p>` : ""}
+        </div>`;
+      $("actions").outerHTML = listenButtons() + g.html;
+      wireListen(unbrace(card.example));
+      g.wire();
+      say(unbrace(card.example));
+    };
+  }
+
+  function renderChunks() {
+    const pick = nextCard("chunk");
+    if (!pick) { doneScreen("cụm", "Nghe chép"); return; }
+    const { card, isNew } = pick;
+    const g = gradeButtons("chunk", card, renderChunks);
+    $("stage").innerHTML = `
       <div class="row" style="justify-content:space-between;align-items:center">
         <span class="situation">${esc(card.sit)}</span>
         <span class="eyebrow">${isNew ? "Cụm mới" : "Đến hạn ôn"}</span>
       </div>
       <p class="prompt-vi">${esc(card.vi)}</p>
       <p class="hint">Nói to cụm tiếng Anh <b>trước khi</b> mở đáp án. Nghĩ không ra cũng phải thử — cố nhớ lại mới là lúc não ghi.</p>
-      <div class="heard" id="heard" hidden></div>
       <div id="reveal" hidden></div>
-      <div class="row" id="actions">
-        ${canHear() ? `<button class="btn" id="micBtn"><span class="rec-dot"></span>Nói để kiểm tra</button>` : ""}
-        <button class="btn primary" id="showBtn">Mở đáp án</button>
-      </div>`;
-    let heardText = "";
-    if (canHear()) {
-      $("micBtn").onclick = async () => {
-        $("micBtn").disabled = true;
-        $("heard").hidden = false;
-        $("heard").innerHTML = `<span class="eyebrow">Đang nghe — nói cụm tiếng Anh</span><div class="live" id="live">…</div>`;
-        try {
-          heardText = await listenOnce((t) => { $("live").textContent = t || "…"; });
-          if (!heardText) throw "no-speech";
-          $("heard").hidden = true;
-          $("showBtn").click();
-        } catch (err) {
-          $("heard").innerHTML = `<p class="warn">${esc(MIC_ERRORS[err] || "Không nhận được giọng nói. Thử lại, hoặc tự nói rồi mở đáp án.")}</p>`;
-          $("micBtn").disabled = false;
-        }
-      };
-    }
+      <div class="row" id="actions"><button class="btn primary" id="showBtn">Mở đáp án</button></div>`;
     $("showBtn").onclick = () => {
       $("reveal").hidden = false;
       $("reveal").innerHTML = `<div class="answer">
           <p class="chunk">${stressed(card.en)}</p>
           ${card.reduced ? `<div class="reduced">Nói nhanh nghe như: ${card.reduced}</div>` : ""}
-        </div>
-        ${heardText ? (() => {
-          const { out, hits, total } = diffWords(plain(card.en).replace(/…/g, ""), heardText);
-          const words = out.map(([k, w]) => `<span class="w-${k}">${esc(w)}</span>`).join("");
-          return `<div class="heard" style="margin-top:12px"><span class="eyebrow">Máy nghe bạn nói</span>
-            <div class="diff">${words}</div>
-            <p class="score">${hits}/${total} từ khớp · máy nghe được: “${esc(heardText)}”</p></div>`;
-        })() : ""}`;
-      $("actions").innerHTML = `
-        ${canSpeak() ? `<button class="btn icon" id="hear">▶ Nghe</button><button class="btn icon" id="hearSlow">Chậm</button>` : ""}
-        <button class="btn again" id="gAgain">Chưa nhớ</button>
-        <button class="btn" id="gHard">Nhớ, nhưng khó</button>
-        <button class="btn good" id="gGood">Nhớ dễ</button>`;
-      if (canSpeak()) {
-        $("hear").onclick = () => say(plain(card.en), 1);
-        $("hearSlow").onclick = () => say(plain(card.en), 0.75);
-        say(plain(card.en), 1);
-      }
-      const go = (v) => { grade(card.id, v); renderMeter(); renderReview(); };
-      $("gAgain").onclick = () => go("again");
-      $("gHard").onclick = () => go("hard");
-      $("gGood").onclick = () => go("good");
-      const box = cardState(card.id)?.box || 0;
-      const nextGood = INTERVAL_DAYS[Math.min(box + 1, INTERVAL_DAYS.length - 1)];
-      $("actions").insertAdjacentHTML("afterend",
-        `<p class="grade-note">Chưa nhớ → gặp lại sau 10 phút · Nhớ dễ → gặp lại sau ${nextGood} ngày</p>`);
-      $("gGood").focus();
+        </div>`;
+      $("actions").outerHTML = listenButtons() + g.html;
+      wireListen(plain(card.en));
+      g.wire();
+      say(plain(card.en));
     };
-    $("showBtn").focus();
   }
 
   const norm = (s) => s.toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9' ]+/g, " ").split(/\s+/).filter(Boolean);
   function diffWords(target, typed) {
-    const t = norm(target), u = norm(typed);
-    const m = t.length, n = u.length;
+    const t = norm(target), u = norm(typed), m = t.length, n = u.length;
     const L = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
     for (let i = m - 1; i >= 0; i--) for (let j = n - 1; j >= 0; j--)
       L[i][j] = t[i] === u[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
@@ -495,113 +472,50 @@
     return { out, hits: out.filter((x) => x[0] === "hit").length, total: m };
   }
 
-  let dictCard = null;
+  function dictationPool() {
+    const fromChunks = CHUNKS.filter((c) => cardState(c.id)).map((c) => ({ text: plain(c.en).replace(/…/g, "").trim(), vi: c.vi, reduced: c.reduced }));
+    const fromWords = WORDS.filter((w) => cardState(w.id) && !cardState(w.id).known).map((w) => ({ text: unbrace(w.example), vi: `câu ví dụ của từ “${w.word}” (${w.vi})`, reduced: "" }));
+    const pool = [...fromChunks, ...fromWords].filter((x) => norm(x.text).length >= 2);
+    if (pool.length >= 8) return pool;
+    return [...pool, ...WORDS.slice(0, 60).map((w) => ({ text: unbrace(w.example), vi: `câu ví dụ của từ “${w.word}” (${w.vi})`, reduced: "" }))];
+  }
+
   function renderDict() {
-    const stage = $("stage");
     if (!canSpeak()) {
-      stage.innerHTML = `<p class="warn">Trình duyệt này không có giọng đọc tiếng Anh, nên không nghe chép được. Mở bằng Chrome hoặc Safari.</p>`;
+      $("stage").innerHTML = `<p class="warn">Trình duyệt này không có giọng đọc tiếng Anh nên không nghe chép được. Mở bằng Chrome hoặc Safari.</p>`;
       return;
     }
-    const seen = DECK.filter((c) => cardState(c.id));
-    const pool = seen.length >= 5 ? seen : DECK;
-    dictCard = pool[Math.floor(Math.random() * pool.length)];
-    stage.innerHTML = `
-      <span class="eyebrow">Nghe → chép từng chữ → đối chiếu</span>
-      <p class="hint">Người bản ngữ nói hơn 6 âm tiết mỗi giây, các từ dính vào nhau. Bài này luyện đúng chỗ đó:
-      tai cắt sai ở đâu thì chỗ đó hiện màu đỏ.</p>
+    const pool = dictationPool();
+    const item = pool[Math.floor(Math.random() * pool.length)];
+    $("stage").innerHTML = `
+      <span class="eyebrow">Nghe → gõ lại từng chữ → đối chiếu</span>
+      <p class="hint">Người bản ngữ nói hơn 6 âm tiết mỗi giây, các từ dính vào nhau. Tai cắt sai ở đâu thì chỗ đó hiện màu đỏ.</p>
       <div class="row">
         <button class="btn primary" id="play">▶ Nghe tốc độ thật</button>
         <button class="btn" id="playSlow">Nghe chậm</button>
       </div>
       <label class="eyebrow" for="dictInput">Bạn nghe được gì?</label>
-      <input class="dict" id="dictInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Gõ đúng những gì nghe thấy…">
+      <input class="dict" id="dictInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Gõ đúng những gì nghe thấy, rồi Enter">
       <div class="row"><button class="btn" id="check">Đối chiếu</button><button class="btn" id="skip">Câu khác</button></div>
       <div id="dictResult"></div>`;
-    const text = plain(dictCard.en).replace(/…/g, "");
-    $("play").onclick = () => say(text, 1);
-    $("playSlow").onclick = () => say(text, 0.7);
+    $("play").onclick = () => say(item.text, 1);
+    $("playSlow").onclick = () => say(item.text, 0.7);
     $("skip").onclick = renderDict;
     const check = () => {
-      const { out, hits, total } = diffWords(text, $("dictInput").value);
-      const words = out.map(([k, w]) => `<span class="w-${k}">${esc(w)}</span>`).join("");
+      const { out, hits, total } = diffWords(item.text, $("dictInput").value);
       $("dictResult").innerHTML = `
-        <div class="diff">${words}</div>
-        <p class="score">${hits}/${total} từ đúng · gốc: “${esc(text)}” — ${esc(dictCard.vi)}</p>
-        ${dictCard.reduced ? `<div class="reduced">Chỗ hay bị nghe sót: ${dictCard.reduced}</div>` : ""}`;
+        <div class="diff">${out.map(([k, w]) => `<span class="w-${k}">${esc(w)}</span>`).join("")}</div>
+        <p class="score">${hits}/${total} từ đúng · gốc: “${esc(item.text)}” — ${esc(item.vi)}</p>
+        ${item.reduced ? `<div class="reduced">Chỗ hay bị nghe sót: ${item.reduced}</div>` : ""}`;
     };
     $("check").onclick = check;
     $("dictInput").onkeydown = (e) => { if (e.key === "Enter") check(); };
-    setTimeout(() => say(text, 1), 250);
+    $("dictInput").focus();
+    setTimeout(() => say(item.text, 1), 250);
   }
 
   let timer = null, phase = 0, left = PHASE_SECONDS[0], topic = TOPICS[0];
-  let rounds = [];
-  let cap = null, micStream = null;
-  async function startCapture() {
-    cap = { words: [], startedAt: Date.now(), chunks: [], rec: null, sr: null, live: true, micError: false };
-    try {
-      micStream = micStream || await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mr = new MediaRecorder(micStream);
-      mr.ondataavailable = (e) => { if (e.data.size) cap?.chunks.push(e.data); };
-      mr.start();
-      cap.rec = mr;
-    } catch { cap.micError = true; }
-    if (!SR) return;
-    const c = cap;
-    const startSR = () => {
-      if (!c.live) return;
-      const r = new SR();
-      r.lang = "en-US"; r.continuous = true; r.interimResults = false;
-      r.onresult = (e) => {
-        for (let i = e.resultIndex; i < e.results.length; i++)
-          if (e.results[i].isFinal) c.words.push(...norm(e.results[i][0].transcript));
-        const el = $("liveWords"); if (el) el.textContent = c.words.length;
-      };
-      r.onend = () => startSR();
-      r.onerror = () => {};
-      try { r.start(); } catch {}
-      c.sr = r;
-    };
-    startSR();
-  }
-  function stopCapture() {
-    return new Promise((resolve) => {
-      if (!cap) return resolve(null);
-      const c = cap; cap = null; c.live = false;
-      const secs = Math.max(1, (Date.now() - c.startedAt) / 1000);
-      try { c.sr?.stop(); } catch {}
-      const done = () => resolve({
-        secs, words: c.words.length, text: c.words.join(" "), micError: c.micError,
-        url: c.chunks.length ? URL.createObjectURL(new Blob(c.chunks, { type: c.rec?.mimeType || "audio/webm" })) : null,
-      });
-      if (c.rec && c.rec.state !== "inactive") { c.rec.onstop = () => setTimeout(done, 400); c.rec.stop(); }
-      else setTimeout(done, 400);
-    });
-  }
-  function resultsHtml() {
-    if (!rounds.length) return "";
-    const wpm = (r) => (r.words ? Math.round(r.words / (r.secs / 60)) : 0);
-    const rows = rounds.map((r, i) => `<tr><td>Lần ${i + 1}</td><td class="num">${fmt(Math.round(r.secs))}</td>
-      <td class="num">${r.words}</td><td class="num">${wpm(r)}</td>
-      <td>${r.url ? `<audio controls src="${r.url}"></audio>` : "—"}</td></tr>`).join("");
-    const first = rounds[0], last = rounds[rounds.length - 1];
-    const verdict = rounds.length >= 2 && wpm(first) > 0
-      ? `<p class="verdict">Tốc độ từ lần 1 đến lần ${rounds.length}: <b>${wpm(first)} → ${wpm(last)} từ/phút</b>
-         (${wpm(last) >= wpm(first) ? "+" : ""}${Math.round((wpm(last) / wpm(first) - 1) * 100)}%). Nghe lại lần 1 và lần cuối để nghe chỗ bớt ngập ngừng.</p>` : "";
-    const micNote = rounds.some((r) => r.micError) ? `<p class="warn">Không truy cập được micro nên không ghi âm được. Cho phép micro rồi làm lại.</p>` : "";
-    return `<span class="eyebrow">Kết quả</span>
-      <div style="overflow-x:auto"><table class="results"><thead><tr><th>Lần</th><th>Nói</th><th>Từ</th><th>Từ/phút</th><th>Nghe lại</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>${verdict}${micNote}
-      <p class="hint">Số từ do máy nhận dạng đếm nên sẽ hụt vài từ — hãy so các lần với nhau thay vì nhìn con số tuyệt đối.</p>`;
-  }
-  async function finishRound() {
-    stopTimer();
-    const res = await stopCapture();
-    if (res) rounds = [...rounds, res];
-    phase += 1;
-    left = PHASE_SECONDS[phase] ?? 0;
-    renderSpeak(false);
-  }
+  const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
   function stopTimer() { if (timer) clearInterval(timer); timer = null; }
   function beep() {
     try {
@@ -611,76 +525,70 @@
       o.connect(g).connect(ctx.destination); o.start(); o.stop(ctx.currentTime + 0.25);
     } catch {}
   }
-  const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
   function renderSpeak(newTopic) {
     stopTimer();
-    if (newTopic) { topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]; phase = 0; left = PHASE_SECONDS[0]; rounds = []; }
-    const learned = DECK.filter((c) => (cardState(c.id)?.box || 0) >= 1);
-    const src = learned.length >= 3 ? learned : DECK;
+    if (newTopic) { topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]; phase = 0; left = PHASE_SECONDS[0]; }
+    const learned = CHUNKS.filter((c) => (cardState(c.id)?.box || 0) >= 1);
+    const src = learned.length >= 3 ? learned : CHUNKS;
     const weave = [...src].sort(() => Math.random() - 0.5).slice(0, 3);
+    const finished = phase >= PHASE_SECONDS.length;
     $("stage").innerHTML = `
       <span class="eyebrow">Chủ đề</span>
       <p class="topic">${esc(topic)}</p>
       <div class="phases">${PHASE_SECONDS.map((s, i) =>
         `<div class="phase" data-state="${i < phase ? "done" : i === phase ? "now" : "next"}">Lần ${i + 1}<b>${fmt(s)}</b></div>`).join("")}</div>
-      <div class="clock" id="clock">${fmt(left)}</div>
-      <p class="hint" id="liveLine" hidden><span class="rec-dot"></span>Đang ghi âm · máy nghe được <b id="liveWords">0</b> từ</p>
+      <div class="clock" id="clock">${fmt(finished ? 0 : left)}</div>
       <div class="row">
-        <button class="btn primary" id="startBtn">${phase >= PHASE_SECONDS.length ? "Làm lại" : "Bắt đầu lần " + (phase + 1)}</button>
+        <button class="btn primary" id="startBtn">${finished ? "Làm lại" : "Bắt đầu lần " + (phase + 1)}</button>
         <button class="btn" id="endBtn" hidden>Xong lần này</button>
         <button class="btn" id="newTopic">Chủ đề khác</button>
       </div>
-      ${resultsHtml()}
       <span class="eyebrow">Thử cài vào lúc nói</span>
       <div class="weave">${weave.map((c) => `<span>${esc(plain(c.en))}</span>`).join("")}</div>
-      <p class="hint">Kể cùng một chuyện cả ba lần, không đổi nội dung. Thời gian ngắn dần buộc bạn nói bằng cụm có sẵn thay vì dịch từ tiếng Việt. App tự ghi âm từng lần và đếm số từ mỗi phút.</p>`;
+      <p class="hint">Nói to thành tiếng, kể cùng một chuyện cả ba lần, không đổi nội dung. Thời gian ngắn dần buộc bạn dùng cụm có sẵn thay vì dịch từ tiếng Việt. Ở lần 3, để ý xem mình còn ngập ngừng ở chỗ nào — đó là chỗ cần học thêm cụm.</p>`;
     $("newTopic").onclick = () => renderSpeak(true);
+    const endRound = () => { stopTimer(); beep(); phase += 1; left = PHASE_SECONDS[phase] ?? 0; renderSpeak(false); };
     $("startBtn").onclick = () => {
-      if (phase >= PHASE_SECONDS.length) { phase = 0; left = PHASE_SECONDS[0]; rounds = []; renderSpeak(false); return; }
+      if (finished) { phase = 0; left = PHASE_SECONDS[0]; renderSpeak(false); return; }
       $("startBtn").disabled = true;
-      $("newTopic").disabled = true;
-      $("liveLine").hidden = false;
       $("endBtn").hidden = false;
-      $("endBtn").onclick = finishRound;
-      startCapture();
+      $("endBtn").onclick = endRound;
       timer = setInterval(() => {
         left -= 1;
         $("clock").textContent = fmt(Math.max(left, 0));
-        if (left <= 0) { beep(); finishRound(); }
+        if (left <= 0) endRound();
       }, 1000);
     };
   }
 
   const WHY = {
-    review: "Hiện nghĩa tiếng Việt, bạn phải <b>tự nhớ ra</b> cụm tiếng Anh trước khi xem — tự nhớ lại hiệu quả hơn đọc lại (g = 0.50, Rowland 2014). Lịch ôn giãn dần 1 → 3 → 7 → 16 → 35 → 75 ngày theo nghiên cứu về khoảng cách ôn (Cepeda 2008). Chữ gạch chân màu cam là <b>từ được nhấn</b> — sai trọng âm câu làm người nghe khó hiểu hơn sai phát âm.",
-    dict: "Người học đọc tốt thường <b>biết từ nhưng không nhận ra nó khi nghe</b>, vì các từ dính liền và biến âm (Field 2008). Nghe thụ động không sửa được điều đó; chép lại từng chữ rồi đối chiếu thì có.",
-    speak: "Kể cùng một chuyện 3 lần trong 4, 3, rồi 2 phút (Nation 1989). Tốc độ nói tăng và ngập ngừng giảm ngay giữa lần đầu và lần thứ ba — thời gian ép buộc não tự động hoá. Nghiên cứu đo đúng hai thứ app đang đo: số từ mỗi phút, và nghe lại để so.",
+    words: "718 từ trong danh sách NGSL-Spoken phủ khoảng <b>90% tiếng Anh nói tự nhiên</b>, xếp từ phổ biến nhất trở xuống. Mỗi từ học trong một câu ngắn: nhìn câu thiếu từ và nghĩa, tự nhớ ra từ, rồi mới xem — tự nhớ lại hiệu quả hơn đọc lại (g = 0.50, Rowland 2014).",
+    chunks: "Người bản ngữ nói bằng <b>cụm có sẵn</b>, không ghép từng từ theo luật ngữ pháp (Pawley &amp; Syder 1983). Học cả khối thì lúc nói não không phải xử lý ngữ pháp. Chữ gạch chân màu cam là từ được nhấn — nhấn sai chỗ làm người nghe khó hiểu hơn phát âm sai. Lịch ôn giãn dần 1 → 3 → 7 → 16 → 35 → 75 ngày (Cepeda 2008).",
+    dict: "Người đọc tốt thường <b>biết từ nhưng không nhận ra nó khi nghe</b>, vì các từ dính liền và biến âm (Field 2008). Nghe thụ động không sửa được; gõ lại từng chữ rồi đối chiếu thì có.",
+    speak: "Kể cùng một chuyện 3 lần trong 4, 3, rồi 2 phút (Nation 1989). Tốc độ nói tăng và ngập ngừng giảm rõ giữa lần đầu và lần thứ ba — thời gian ngắn dần ép não tự động hoá.",
   };
 
+  const TABS = { words: "tabWords", chunks: "tabReview", dict: "tabDict", speak: "tabSpeak" };
   function setMode(m) {
     mode = m;
     stopTimer();
-    stopCapture();
     if (window.speechSynthesis) speechSynthesis.cancel();
-    $("tabReview").setAttribute("aria-selected", m === "review");
-    $("tabDict").setAttribute("aria-selected", m === "dict");
-    $("tabSpeak").setAttribute("aria-selected", m === "speak");
+    Object.entries(TABS).forEach(([k, id]) => $(id).setAttribute("aria-selected", k === m));
     $("why").innerHTML = WHY[m];
-    if (m === "review") renderReview();
+    renderMeter();
+    if (m === "words") renderWords();
+    else if (m === "chunks") renderChunks();
     else if (m === "dict") renderDict();
     else renderSpeak(true);
   }
-  $("tabReview").onclick = () => setMode("review");
-  $("tabDict").onclick = () => setMode("dict");
-  $("tabSpeak").onclick = () => setMode("speak");
+  Object.entries(TABS).forEach(([k, id]) => { $(id).onclick = () => setMode(k); });
 
-  const local = loadLocal();
-  if (local && local.cards) state = local;
-  renderMeter();
-  setMode("review");
-
+  if (!CHUNKS.length || !WORDS.length) {
+    $("stage").innerHTML = `<p class="warn">Không tải được dữ liệu từ vựng. Tải lại trang.</p>`;
+    return;
+  }
+  setMode("words");
 })();
 </script>
-
 </body>
 </html>

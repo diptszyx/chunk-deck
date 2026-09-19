@@ -1,0 +1,718 @@
+be | là, thì, ở | I'll {be} there at six.
+the | (mạo từ xác định) cái, con… | Can you close {the} door?
+you | bạn | Are {you} free tonight?
+and | và | I need coffee {and} a sandwich.
+it | nó | {It} works now.
+to | đến, để | I want {to} go home.
+a | một (mạo từ) | I have {a} question.
+have | có | Do you {have} a minute?
+of | của | That's one {of} my friends.
+do | làm | What do you {do} for work?
+not | không | I'm {not} sure.
+that | cái đó, rằng | {That} sounds good.
+they | họ | {They} left early.
+we | chúng tôi, chúng ta | {We} should start now.
+in | trong | He's {in} the meeting.
+he | anh ấy | {He} works from home.
+know | biết | I don't {know} yet.
+get | lấy, nhận, trở nên | Did you {get} my message?
+go | đi | Let's {go}.
+so | vì vậy, rất | {So} what happened next?
+this | cái này | Is {this} yours?
+but | nhưng | It's cheap, {but} it's slow.
+on | trên | It's {on} the table.
+I | tôi | {I} think so.
+for | cho, trong (thời gian) | This is {for} you.
+think | nghĩ | What do you {think}?
+like | thích, giống như | I {like} this song.
+there | ở đó, có | Is {there} a problem?
+will | sẽ | I {will} call you later.
+say | nói | What did she {say}?
+she | cô ấy | {She} is my sister.
+what | cái gì | {What} do you mean?
+just | chỉ, vừa mới | I {just} got here.
+well | à, tốt | {Well}, it depends.
+one | một | Just {one} more thing.
+with | với | Come {with} me.
+if | nếu | Call me {if} you need help.
+at | ở, lúc | See you {at} five.
+all | tất cả | That's {all} for today.
+about | về, khoảng | What is it {about}?
+or | hoặc | Tea {or} coffee?
+as | như, khi | Do it {as} soon as you can.
+would | sẽ (giả định) | {Would} you like some water?
+then | sau đó, vậy thì | {Then} we went home.
+because | bởi vì | I'm late {because} of the traffic.
+right | đúng, bên phải | You're {right}.
+can | có thể | {Can} you help me?
+no | không | {No}, thanks.
+up | lên | Hurry {up}!
+mean | có nghĩa là | What do you {mean}?
+out | ra ngoài | Let's eat {out} tonight.
+see | thấy, gặp | {See} you tomorrow.
+thing | điều, thứ | One more {thing}.
+yes | vâng, có | {Yes}, that's right.
+when | khi nào | {When} does it start?
+really | thật sự | I {really} like it.
+want | muốn | Do you {want} some?
+come | đến | Can you {come} here?
+now | bây giờ | I'm busy right {now}.
+some | một vài | I need {some} help.
+good | tốt | That's a {good} idea.
+from | từ | Where are you {from}?
+time | thời gian, lần | What {time} is it?
+people | mọi người | Most {people} agree.
+very | rất | Thank you {very} much.
+yeah | ừ | {Yeah}, sure.
+make | làm, tạo ra | Let me {make} some tea.
+look | nhìn | {Look} at this.
+two | hai | I have {two} kids.
+take | lấy, mất (thời gian) | It will {take} an hour.
+here | ở đây | Come {here}.
+which | cái nào | {Which} one do you want?
+could | có thể (lịch sự) | {Could} you repeat that?
+work | làm việc, hoạt động | It doesn't {work}.
+more | hơn, thêm | I need {more} time.
+who | ai | {Who} is that?
+other | khác | The {other} one is better.
+laugh | cười | Don't {laugh} at me.
+where | ở đâu | {Where} are you?
+use | dùng | Can I {use} your phone?
+something | cái gì đó | I want to ask you {something}.
+how | thế nào | {How} are you?
+back | lại, về | I'll be {back} soon.
+year | năm | See you next {year}.
+by | bởi, trước (thời điểm) | I need it {by} Friday.
+any | bất kỳ | Do you have {any} questions?
+lot | nhiều | Thanks a {lot}.
+way | cách, đường | Is there a better {way}?
+put | đặt, để | {Put} it on the table.
+down | xuống | Please sit {down}.
+give | đưa, cho | {Give} me a second.
+sort | loại; sắp xếp | It's {sort} of hard to explain.
+three | ba | It takes {three} days.
+much | nhiều | How {much} is it?
+actually | thật ra | {Actually}, I changed my mind.
+need | cần | I {need} a break.
+talk | nói chuyện | Can we {talk}?
+kind | loại; tử tế | What {kind} of music do you like?
+tell | kể, bảo | {Tell} me more.
+only | chỉ | It's {only} five minutes away.
+should | nên | You {should} try it.
+over | qua, xong | The meeting is {over}.
+little | nhỏ, một chút | Just a {little}.
+day | ngày | Have a nice {day}.
+into | vào trong | Let's go {into} the room.
+bit | một chút | Wait a {bit}.
+try | thử | Let me {try} again.
+why | tại sao | {Why} not?
+okay | được, ổn | Is that {okay}?
+off | tắt, rời | Turn it {off}.
+first | đầu tiên | Who goes {first}?
+than | hơn (so sánh) | It's better {than} before.
+too | cũng, quá | Me {too}.
+five | năm (số 5) | Give me {five} minutes.
+let | để, cho phép | {Let} me check.
+call | gọi | I'll {call} you back.
+four | bốn | We need {four} chairs.
+last | cuối cùng, trước | I saw him {last} week.
+start | bắt đầu | When do we {start}?
+quite | khá | It's {quite} far.
+still | vẫn | Are you {still} there?
+find | tìm thấy | I can't {find} my keys.
+probably | có lẽ | I'll {probably} be late.
+even | thậm chí | I didn't {even} notice.
+might | có thể (không chắc) | It {might} rain today.
+through | xuyên qua | Walk {through} the park.
+point | ý chính, điểm | That's a good {point}.
+anything | bất cứ thứ gì | Do you need {anything}?
+week | tuần | See you next {week}.
+before | trước khi | Call me {before} you leave.
+again | lại, lần nữa | Say that {again}.
+problem | vấn đề | No {problem}.
+never | không bao giờ | I've {never} been there.
+same | giống nhau | We have the {same} phone.
+big | to, lớn | That's a {big} deal.
+feel | cảm thấy | How do you {feel}?
+ask | hỏi | Can I {ask} you something?
+question | câu hỏi | I have a {question}.
+also | cũng | I {also} need a pen.
+different | khác | It's {different} now.
+sure | chắc chắn | Are you {sure}?
+long | dài, lâu | How {long} will it take?
+always | luôn luôn | She's {always} late.
+school | trường học | My son goes to {school} nearby.
+happen | xảy ra | What {happened}?
+course | khoá học; tất nhiên | Of {course}!
+keep | giữ, tiếp tục | {Keep} going.
+another | cái khác, thêm một | Can I have {another} one?
+nice | đẹp, tốt, dễ chịu | {Nice} to meet you.
+read | đọc | Did you {read} the email?
+hundred | trăm | About a {hundred} people came.
+leave | rời đi, để lại | I have to {leave} now.
+many | nhiều (đếm được) | How {many} do you need?
+after | sau khi | Let's talk {after} lunch.
+thank | cảm ơn | {Thank} you so much.
+meet | gặp | Nice to {meet} you.
+stuff | đồ, thứ | I have a lot of {stuff} to do.
+end | kết thúc, cuối | See you at the {end} of the day.
+number | số | What's your phone {number}?
+hear | nghe thấy | Can you {hear} me?
+next | tiếp theo | See you {next} time.
+six | sáu | It starts at {six}.
+pay | trả tiền | Can I {pay} by card?
+money | tiền | I don't have much {money}.
+place | nơi, chỗ | This {place} is nice.
+remember | nhớ | Do you {remember} me?
+maybe | có lẽ | {Maybe} tomorrow.
+old | cũ, già | How {old} are you?
+test | bài kiểm tra; thử | Let's {test} it first.
+home | nhà | I'm going {home}.
+change | thay đổi | Nothing will {change}.
+though | mặc dù, dù vậy | It's good, {though}.
+house | ngôi nhà | Their {house} is big.
+new | mới | Is this {new}?
+live | sống | Where do you {live}?
+part | phần | That's the hard {part}.
+kid | đứa trẻ | They have two {kids}.
+interest | sự quan tâm, sở thích | I have no {interest} in that.
+around | xung quanh, khoảng | See you {around}.
+write | viết | Please {write} it down.
+most | hầu hết, nhất | {Most} of them agree.
+move | di chuyển, chuyển nhà | We {moved} here last year.
+every | mỗi, mọi | I run {every} morning.
+today | hôm nay | I'm tired {today}.
+twenty | hai mươi | It's {twenty} dollars.
+else | khác, nữa | Anything {else}?
+anyway | dù sao đi nữa | {Anyway}, let's continue.
+child | đứa trẻ | She's an only {child}.
+buy | mua | I want to {buy} a new laptop.
+fact | sự thật | In {fact}, I agree.
+play | chơi | Do you {play} football?
+great | tuyệt vời | That's {great} news.
+job | công việc | I love my {job}.
+seem | có vẻ | You {seem} tired.
+man | người đàn ông | Who is that {man}?
+night | buổi tối, đêm | Good {night}.
+away | xa, đi khỏi | Go {away}!
+pound | bảng Anh; cân Anh | It costs ten {pounds}.
+issue | vấn đề | That's not the {issue}.
+own | của riêng | I have my {own} room.
+area | khu vực | Do you live in this {area}?
+half | một nửa | I'll be there in {half} an hour.
+bad | tệ, xấu | Not {bad}.
+round | tròn; vòng | It's your {round}.
+eight | tám | I get up at {eight}.
+help | giúp | Can you {help} me?
+ten | mười | Wait {ten} minutes.
+whole | toàn bộ | I spent the {whole} day at home.
+everything | mọi thứ | Is {everything} okay?
+minute | phút | Just a {minute}.
+may | có thể (lịch sự) | {May} I come in?
+whether | liệu có… hay không | I don't know {whether} he's coming.
+student | học sinh, sinh viên | I'm a {student}.
+guess | đoán | {Guess} what happened.
+whatever | bất cứ gì | Do {whatever} you want.
+car | xe hơi | Where did you park the {car}?
+sit | ngồi | Please {sit} down.
+bring | mang theo | {Bring} your laptop.
+book | sách; đặt chỗ | I {booked} a table for two.
+name | tên | What's your {name}?
+run | chạy | I have to {run}.
+show | cho xem, chương trình | Can you {show} me?
+word | từ | What's the {word} for this?
+suppose | cho rằng | I {suppose} you're right.
+morning | buổi sáng | Good {morning}.
+must | phải | You {must} be tired.
+understand | hiểu | I don't {understand}.
+month | tháng | See you next {month}.
+both | cả hai | I like {both}.
+idea | ý tưởng | Good {idea}.
+seven | bảy | We open at {seven}.
+pretty | khá; xinh | It's {pretty} good.
+somebody | ai đó | {Somebody} called you.
+able | có thể | Will you be {able} to come?
+item | món, mục | The last {item} on the list.
+hour | giờ | It takes an {hour}.
+side | bên, phía | Which {side} are you on?
+enough | đủ | That's {enough} for today.
+ever | từng, bao giờ | Have you {ever} been to Japan?
+important | quan trọng | This is {important}.
+late | muộn | Sorry I'm {late}.
+turn | rẽ, lượt | It's your {turn}.
+between | giữa | Choose {between} these two.
+thousand | nghìn | It costs a {thousand} dollars.
+few | vài | I have a {few} questions.
+term | thuật ngữ; kỳ học | What does this {term} mean?
+life | cuộc sống | That's {life}.
+nine | chín | I start work at {nine}.
+believe | tin | I can't {believe} it.
+far | xa | Is it {far} from here?
+sorry | xin lỗi | {Sorry}, my mistake.
+set | đặt, thiết lập; bộ | Can you {set} a reminder?
+thirty | ba mươi | Give me {thirty} minutes.
+nothing | không có gì | {Nothing} happened.
+case | trường hợp | In that {case}, let's wait.
+real | thật | Is it {real}?
+second | giây; thứ hai | Give me a {second}.
+mind | tâm trí; phiền | Do you {mind} if I sit here?
+woman | người phụ nữ | That {woman} is my boss.
+guy | anh chàng | He's a nice {guy}.
+each | mỗi | {Each} person gets one.
+hard | khó; chăm chỉ | This is {hard}.
+couple | cặp đôi; vài | Give me a {couple} of minutes.
+love | yêu, rất thích | I {love} this place.
+speak | nói (ngôn ngữ) | Do you {speak} English?
+group | nhóm | We work in a small {group}.
+together | cùng nhau | Let's do it {together}.
+high | cao | The price is too {high}.
+friend | bạn bè | She's my best {friend}.
+build | xây dựng | We {built} it in a week.
+family | gia đình | How is your {family}?
+watch | xem; đồng hồ đeo tay | Let's {watch} a movie.
+country | đất nước | Which {country} are you from?
+plan | kế hoạch | What's the {plan}?
+fifty | năm mươi | It's {fifty} percent off.
+send | gửi | Can you {send} it to me?
+obviously | rõ ràng là | {Obviously}, I said yes.
+reason | lý do | What's the {reason}?
+yet | chưa, vẫn chưa | Not {yet}.
+walk | đi bộ | Let's {walk} there.
+either | một trong hai; cũng không | I don't like it {either}.
+wait | chờ | {Wait} for me.
+already | đã rồi | I {already} did it.
+person | người | She's a nice {person}.
+open | mở | Is the shop {open}?
+once | một lần | I've been there {once}.
+deal | thoả thuận; xử lý | It's a {deal}.
+report | báo cáo | I need to finish this {report}.
+stop | dừng | {Stop} it!
+hand | tay | Can you give me a {hand}?
+alright | được, ổn | Are you {alright}?
+example | ví dụ | Can you give me an {example}?
+cause | gây ra; nguyên nhân | What {caused} the problem?
+information | thông tin | I need more {information}.
+please | làm ơn | Sit down, {please}.
+exactly | chính xác | {Exactly}!
+ago | trước đây | I saw him two days {ago}.
+room | phòng | Which {room} is it?
+answer | câu trả lời; trả lời | I don't know the {answer}.
+spend | tiêu, dành (thời gian) | How much did you {spend}?
+stay | ở lại | Can you {stay} a bit longer?
+rather | thà, khá là | I'd {rather} stay home.
+certainly | chắc chắn | {Certainly}, no problem.
+breath | hơi thở | Take a deep {breath}.
+while | trong khi | I read {while} I wait.
+everybody | mọi người | Hi, {everybody}!
+clear | rõ ràng | Is that {clear}?
+eat | ăn | Let's {eat}.
+perhaps | có lẽ | {Perhaps} you're right.
+early | sớm | I woke up {early}.
+care | quan tâm | I don't {care}.
+pick | chọn, nhặt | {Pick} one.
+type | loại; gõ | What {type} of work do you do?
+matter | vấn đề; quan trọng | It doesn't {matter}.
+such | như vậy, thật là | It's {such} a nice day.
+until | cho đến khi | Wait {until} I call you.
+hope | hy vọng | I {hope} so.
+level | mức độ, cấp | What's your English {level}?
+small | nhỏ | It's a {small} problem.
+line | dòng, hàng | Read the first {line}.
+close | đóng; gần | {Close} the window, please.
+phone | điện thoại | My {phone} is dead.
+least | ít nhất | At {least} we tried.
+under | dưới | It's {under} the bed.
+someone | ai đó | {Someone} is at the door.
+system | hệ thống | The {system} is down.
+cost | chi phí; tốn | How much does it {cost}?
+state | trạng thái; bang | What {state} is it in now?
+sometimes | thỉnh thoảng | I {sometimes} work late.
+paper | giấy | Do you have a piece of {paper}?
+top | đỉnh, trên cùng | It's on the {top} shelf.
+concern | mối lo | My main {concern} is the cost.
+since | kể từ | I've lived here {since} 2020.
+order | gọi món, đặt hàng; thứ tự | Are you ready to {order}?
+government | chính phủ | The {government} changed the rules.
+sound | nghe có vẻ; âm thanh | That {sounds} good.
+tomorrow | ngày mai | See you {tomorrow}.
+service | dịch vụ | The {service} here is great.
+wrong | sai | What's {wrong}?
+lose | mất, thua | Don't {lose} it.
+easy | dễ | It's {easy}.
+water | nước | Can I have some {water}?
+program | chương trình | The {program} crashed.
+parent | bố mẹ | My {parents} live nearby.
+break | nghỉ; làm vỡ | Let's take a {break}.
+agree | đồng ý | I {agree} with you.
+business | kinh doanh, việc | It's none of your {business}.
+within | trong vòng | I'll reply {within} a day.
+door | cửa | Open the {door}.
+drive | lái xe | Can you {drive}?
+sense | ý nghĩa; cảm giác | That makes {sense}.
+stand | đứng; chịu đựng | I can't {stand} it.
+basically | về cơ bản | {Basically}, it's done.
+process | quy trình | The {process} is slow.
+hold | cầm, giữ | {Hold} on a second.
+cut | cắt | Don't {cut} yourself.
+moment | lúc, khoảnh khắc | Just a {moment}.
+girl | cô gái | That {girl} is my cousin.
+past | quá khứ; đi qua | That's in the {past}.
+without | không có | I can't work {without} coffee.
+learn | học | I want to {learn} English.
+young | trẻ | She's very {young}.
+anybody | bất kỳ ai | Is {anybody} home?
+teacher | giáo viên | My {teacher} is very kind.
+become | trở thành | He {became} a doctor.
+member | thành viên | Are you a {member}?
+train | tàu hoả; huấn luyện | I take the {train} to work.
+class | lớp học | I have a {class} at nine.
+forty | bốn mươi | It's about {forty} minutes.
+company | công ty | Which {company} do you work for?
+begin | bắt đầu | Let's {begin}.
+fine | ổn | I'm {fine}, thanks.
+support | hỗ trợ | Thanks for your {support}.
+head | đầu; đi về hướng | I'm {heading} home.
+world | thế giới | It's a small {world}.
+nineteen | mười chín | She's {nineteen}.
+dad | bố | My {dad} is a teacher.
+view | quan điểm; tầm nhìn | Nice {view}!
+decide | quyết định | You {decide}.
+finish | hoàn thành | Did you {finish}?
+expect | mong đợi | I didn't {expect} that.
+particular | cụ thể | Any {particular} reason?
+percent | phần trăm | Ten {percent} off.
+shop | cửa hàng; mua sắm | The {shop} closes at nine.
+situation | tình huống | It's a difficult {situation}.
+involve | liên quan, bao gồm | What does the job {involve}?
+check | kiểm tra | Let me {check}.
+along | dọc theo; cùng | Can I come {along}?
+full | đầy | I'm {full}.
+form | mẫu đơn; hình thức | Please fill in this {form}.
+sell | bán | Do you {sell} coffee here?
+story | câu chuyện | That's a long {story}.
+certain | chắc chắn; nhất định | Are you {certain}?
+local | địa phương | We went to a {local} market.
+ring | gọi điện; chiếc nhẫn | I'll {ring} you later.
+figure | con số; hiểu ra | I'll {figure} it out.
+twelve | mười hai | See you at {twelve}.
+wonder | tự hỏi | I {wonder} why.
+boy | cậu bé | Good {boy}!
+usually | thường | I {usually} walk to work.
+public | công cộng | Is this a {public} place?
+less | ít hơn | Use {less} sugar.
+worry | lo lắng | Don't {worry}.
+funny | buồn cười | That's so {funny}.
+yesterday | hôm qua | I saw her {yesterday}.
+road | con đường | The {road} is closed.
+discussion | cuộc thảo luận | We had a long {discussion}.
+front | phía trước | I'll wait in {front} of the shop.
+record | ghi lại; hồ sơ | Can I {record} this call?
+across | băng qua, phía bên kia | The bank is {across} the street.
+absolutely | hoàn toàn | {Absolutely}, go ahead.
+short | ngắn | Keep it {short}.
+policy | chính sách | What's the return {policy}?
+difficult | khó | It's {difficult} to explain.
+teach | dạy | Can you {teach} me?
+mine | của tôi | That one is {mine}.
+piece | mảnh, miếng | Can I have a {piece} of cake?
+provide | cung cấp | We {provide} free Wi-Fi.
+comment | bình luận | Any {comments}?
+cover | che, bao gồm | Does it {cover} everything?
+mother | mẹ | My {mother} cooks very well.
+almost | gần như | I'm {almost} done.
+list | danh sách | Make a {list}.
+difference | sự khác biệt | What's the {difference}?
+ninety | chín mươi | He's {ninety} years old.
+against | chống lại, dựa vào | I'm not {against} it.
+forget | quên | Don't {forget} your keys.
+page | trang | Turn to {page} ten.
+light | ánh sáng; nhẹ | Turn on the {light}.
+happy | vui | I'm {happy} for you.
+yourself | chính bạn | Take care of {yourself}.
+myself | chính tôi | I did it {myself}.
+dollar | đô la | It's five {dollars}.
+cough | ho | I have a bad {cough}.
+tape | băng dính | Do you have any {tape}?
+allow | cho phép | Smoking is not {allowed} here.
+wear | mặc, đeo | What should I {wear}?
+forward | về phía trước | I look {forward} to it.
+follow | theo | {Follow} me.
+experience | kinh nghiệm | Do you have any {experience}?
+clock | đồng hồ | The {clock} is wrong.
+listen | lắng nghe | {Listen} to me.
+decision | quyết định | It's your {decision}.
+mention | nhắc đến | You didn't {mention} that.
+somewhere | ở đâu đó | Let's go {somewhere} quiet.
+eighty | tám mươi | It's {eighty} percent done.
+bloody | (tiếng Anh–Anh) cực kỳ, chết tiệt | It's {bloody} cold today.
+age | tuổi | What {age} is he?
+outside | bên ngoài | Let's wait {outside}.
+letter | lá thư; chữ cái | I got a {letter} today.
+during | trong suốt | Don't talk {during} the movie.
+language | ngôn ngữ | How many {languages} do you speak?
+card | thẻ | Can I pay by {card}?
+large | lớn | A {large} coffee, please.
+stick | dán; bám; cây gậy | {Stick} to the plan.
+base | nền tảng; dựa trên | It's {based} on a true story.
+picture | bức ảnh | Can I take a {picture}?
+table | cái bàn | A {table} for two, please.
+enjoy | thích, tận hưởng | {Enjoy} your meal.
+party | bữa tiệc | Are you coming to the {party}?
+continue | tiếp tục | Please {continue}.
+pass | đưa; vượt qua | Can you {pass} the salt?
+add | thêm | {Add} some salt.
+sixty | sáu mươi | The speed limit is {sixty}.
+often | thường xuyên | How {often} do you go?
+fall | ngã, rơi; mùa thu | Be careful, don't {fall}.
+grow | lớn lên, trồng | I {grew} up in Hanoi.
+general | chung, tổng quát | In {general}, it's fine.
+drink | uống; đồ uống | What would you like to {drink}?
+carry | mang, xách | Can you {carry} this?
+response | phản hồi | Thanks for the quick {response}.
+price | giá | What's the {price}?
+include | bao gồm | Is breakfast {included}?
+bed | giường | I'm going to {bed}.
+position | vị trí | What {position} are you applying for?
+soon | sớm, chẳng mấy chốc | See you {soon}.
+suggest | đề xuất | What do you {suggest}?
+office | văn phòng | I'm at the {office}.
+possible | có thể | Is that {possible}?
+fifteen | mười lăm | I'll be there in {fifteen} minutes.
+sign | ký; biển báo | Please {sign} here.
+face | khuôn mặt; đối mặt | Wash your {face}.
+draw | vẽ | Can you {draw} it for me?
+low | thấp | The battery is {low}.
+although | mặc dù | I went, {although} I was tired.
+dog | con chó | Do you have a {dog}?
+present | món quà; hiện tại | This is a {present} for you.
+amount | số lượng | That's a large {amount} of money.
+market | chợ, thị trường | Let's go to the {market}.
+sing | hát | Can you {sing}?
+save | tiết kiệm; lưu | Don't forget to {save} the file.
+game | trò chơi, trận đấu | Did you watch the {game}?
+lovely | dễ thương, tuyệt | What a {lovely} day.
+choice | lựa chọn | You have no {choice}.
+ready | sẵn sàng | Are you {ready}?
+food | đồ ăn | The {food} here is great.
+die | chết | My phone is about to {die}.
+health | sức khoẻ | {Health} comes first.
+color | màu | What {color} do you like?
+community | cộng đồng | It's a friendly {community}.
+mathematics | toán học | I was bad at {mathematics}.
+miss | nhớ; lỡ | I {missed} the bus.
+address | địa chỉ | What's your {address}?
+town | thị trấn | I live in a small {town}.
+win | thắng | Who {won}?
+foot | bàn chân | My {foot} hurts.
+raise | nâng lên; nuôi | {Raise} your hand.
+discuss | thảo luận | Let's {discuss} it tomorrow.
+committee | uỷ ban | The {committee} will decide.
+pull | kéo | {Pull} the door.
+box | cái hộp | Put it in the {box}.
+dear | thân mến; trời ơi | Oh {dear}!
+consider | cân nhắc | Please {consider} it.
+rest | nghỉ ngơi; phần còn lại | You need some {rest}.
+increase | tăng | Prices {increased} again.
+nobody | không ai | {Nobody} knows.
+computer | máy tính | My {computer} is slow.
+budget | ngân sách | What's your {budget}?
+fun | vui | Have {fun}!
+depend | phụ thuộc | It {depends}.
+particularly | đặc biệt là | I'm not {particularly} hungry.
+study | học | I {study} English every day.
+tonight | tối nay | Are you free {tonight}?
+everyone | mọi người | Thanks, {everyone}.
+afternoon | buổi chiều | Good {afternoon}.
+notice | để ý | Did you {notice} that?
+baby | em bé | The {baby} is sleeping.
+chance | cơ hội | Give me a {chance}.
+standard | tiêu chuẩn | It's the {standard} size.
+especially | đặc biệt | I love fruit, {especially} mango.
+middle | giữa | I'm in the {middle} of something.
+press | nhấn | {Press} the button.
+till | cho đến | Wait {till} tomorrow.
+million | triệu | It cost a {million} dollars.
+seventy | bảy mươi | My grandma is {seventy}.
+city | thành phố | I love this {city}.
+realize | nhận ra | I didn't {realize} that.
+score | điểm số | What's the {score}?
+weekend | cuối tuần | Have a nice {weekend}.
+black | màu đen | I'll have it {black}, no sugar.
+lead | dẫn dắt | You {lead}, I'll follow.
+result | kết quả | What was the {result}?
+fit | vừa vặn | Does it {fit}?
+staff | nhân viên | The {staff} are very friendly.
+control | kiểm soát | It's out of {control}.
+definitely | chắc chắn | I'll {definitely} come.
+conversation | cuộc trò chuyện | Nice {conversation}.
+further | xa hơn, thêm | Any {further} questions?
+straight | thẳng | Go {straight} ahead.
+free | rảnh; miễn phí | Are you {free} now?
+shall | nhé (đề nghị) | {Shall} we go?
+develop | phát triển | We need to {develop} a plan.
+college | trường cao đẳng, đại học | I met him in {college}.
+opportunity | cơ hội | It's a great {opportunity}.
+near | gần | Is there a bank {near} here?
+ought | nên | You {ought} to see a doctor.
+per | mỗi | Twenty dollars {per} hour.
+bear | chịu đựng; con gấu | {Bear} with me for a second.
+date | ngày tháng; hẹn hò | What's the {date} today?
+offer | đề nghị | Thanks for the {offer}.
+grade | điểm; lớp | What {grade} did you get?
+toward | về phía | Walk {toward} the station.
+war | chiến tranh | The {war} ended in 1975.
+throw | ném | Don't {throw} it away.
+major | lớn, chính | It's a {major} problem.
+charge | tính phí; sạc | My phone is {charging}.
+rate | tỷ lệ, mức giá | What's the exchange {rate}?
+individual | cá nhân | Each {individual} is different.
+music | âm nhạc | What {music} do you like?
+doctor | bác sĩ | You should see a {doctor}.
+husband | chồng | Her {husband} is a chef.
+force | ép buộc; lực | Don't {force} it.
+load | tải; khối lượng | The page won't {load}.
+effect | ảnh hưởng | It had a big {effect} on me.
+wish | ước | I {wish} I could help.
+team | đội, nhóm | Our {team} is small.
+eleven | mười một | It's {eleven} o'clock.
+worth | đáng giá | It's {worth} it.
+brief | ngắn gọn | I'll be {brief}.
+law | luật | It's against the {law}.
+unless | trừ khi | I'll go, {unless} it rains.
+future | tương lai | Good luck in the {future}.
+behind | phía sau | It's {behind} you.
+site | trang web; địa điểm | Check the {site} for details.
+white | màu trắng | The {white} one, please.
+special | đặc biệt | Today is a {special} day.
+main | chính | What's the {main} problem?
+trouble | rắc rối | Are you in {trouble}?
+project | dự án | How's the {project} going?
+father | bố | My {father} is retired.
+quality | chất lượng | The {quality} is good.
+themselves | chính họ | They did it {themselves}.
+sleep | ngủ | Did you {sleep} well?
+share | chia sẻ | Can we {share} a table?
+available | có sẵn, rảnh | Are you {available} tomorrow?
+hit | đánh, va | I {hit} my head.
+fair | công bằng | That's not {fair}.
+news | tin tức | I have good {news}.
+bottom | đáy, dưới cùng | It's at the {bottom} of the page.
+strong | mạnh | This coffee is too {strong}.
+note | ghi chú | Let me take a {note}.
+step | bước | One {step} at a time.
+subject | chủ đề; môn học | Let's change the {subject}.
+clean | sạch; dọn dẹp | I need to {clean} my room.
+wife | vợ | This is my {wife}.
+machine | máy móc | The coffee {machine} is broken.
+cool | mát; hay, ngầu | That's so {cool}.
+drop | làm rơi; ghé qua | I'll {drop} by later.
+land | hạ cánh; đất | The plane {landed} on time.
+period | giai đoạn | It was a hard {period}.
+bother | làm phiền | Sorry to {bother} you.
+development | sự phát triển | It's still in {development}.
+detail | chi tiết | Tell me the {details}.
+marry | cưới | Will you {marry} me?
+power | điện; sức mạnh | The {power} is out.
+tax | thuế | Does the price include {tax}?
+benefit | lợi ích | What are the {benefits}?
+cold | lạnh; cảm lạnh | I have a {cold}.
+imagine | tưởng tượng | {Imagine} that!
+vote | bỏ phiếu | Who did you {vote} for?
+hang | treo; tụ tập | Let's {hang} out this weekend.
+education | giáo dục | {Education} is important.
+anyone | bất kỳ ai | Does {anyone} know?
+national | quốc gia | It's a {national} holiday.
+fire | lửa; sa thải | He got {fired}.
+council | hội đồng | The city {council} approved it.
+instead | thay vào đó | Let's walk {instead}.
+bill | hoá đơn | Can I have the {bill}, please?
+catch | bắt, kịp | I need to {catch} the bus.
+tend | có xu hướng | I {tend} to sleep late.
+account | tài khoản | I forgot my {account} password.
+statement | tuyên bố; sao kê | Check your bank {statement}.
+board | bảng; lên (tàu, xe) | It's time to {board}.
+summer | mùa hè | See you in the {summer}.
+text | tin nhắn; nhắn tin | {Text} me when you arrive.
+brother | anh, em trai | This is my younger {brother}.
+fairly | khá | It's {fairly} easy.
+holiday | kỳ nghỉ | Enjoy your {holiday}.
+dinner | bữa tối | What's for {dinner}?
+fund | quỹ | We don't have the {funds}.
+sister | chị, em gái | My {sister} lives abroad.
+noise | tiếng ồn | What's that {noise}?
+push | đẩy | {Push} the door.
+accept | chấp nhận | Do you {accept} cards?
+police | cảnh sát | Call the {police}.
+kill | giết | My feet are {killing} me.
+travel | du lịch, đi lại | I love to {travel}.
+explain | giải thích | Can you {explain} again?
+movie | bộ phim | Let's watch a {movie}.
+hair | tóc | Your {hair} looks nice.
+specific | cụ thể | Can you be more {specific}?
+tea | trà | Would you like some {tea}?
+hate | ghét | I {hate} waiting.
+center | trung tâm | It's in the city {center}.
+degree | độ; bằng cấp | It's thirty {degrees} today.
+choose | chọn | You can {choose} any one.
+research | nghiên cứu | I did some {research}.
+body | cơ thể | My whole {body} hurts.
+rule | quy tắc | Those are the {rules}.
+produce | sản xuất | They {produce} coffee here.
+size | kích cỡ | What {size} are you?
+ahead | phía trước; trước | Go {ahead}.
+fill | đổ đầy; điền | {Fill} in the form.
+extra | thêm | Is there an {extra} charge?
+value | giá trị | It's good {value} for money.
+bag | túi | Do you need a {bag}?
+stage | giai đoạn; sân khấu | We're at an early {stage}.
+eye | mắt | Close your {eyes}.
+window | cửa sổ | Open the {window}.
+park | công viên; đỗ xe | Where can I {park}?
+hot | nóng | It's so {hot} today.
+document | tài liệu | Please send me the {document}.
+relate | liên quan; đồng cảm | I can {relate} to that.
+evening | buổi tối | Good {evening}.
+itself | chính nó | The door closed by {itself}.
+several | vài | I called {several} times.
+product | sản phẩm | Is this {product} new?
+wonderful | tuyệt vời | What a {wonderful} idea.
+relationship | mối quan hệ | We have a good {relationship}.
+floor | sàn; tầng | Which {floor}?
+hospital | bệnh viện | She's in the {hospital}.
+plus | cộng thêm | Two {plus} two is four.
+quick | nhanh | Can I ask a {quick} question?
+lady | quý bà | Ask that {lady}.
+mile | dặm | It's a {mile} away.
+aware | biết, nhận thức | Are you {aware} of that?
+contact | liên lạc | How can I {contact} you?
+single | độc thân; đơn | Are you {single}?
+copy | bản sao; sao chép | Can I get a {copy}?
+effort | nỗ lực | Thanks for the {effort}.
+review | xem lại; đánh giá | Can you {review} my code?
+trade | trao đổi; thương mại | Do you want to {trade} seats?
+sale | đợt giảm giá | Is this on {sale}?
+totally | hoàn toàn | I {totally} agree.
+therefore | do đó | It's late, {therefore} we should go.
+air | không khí | I need some fresh {air}.
+church | nhà thờ | The {church} is on the corner.
+visit | thăm | Come {visit} us.
+awful | tệ hại | The weather is {awful}.
+action | hành động | We need to take {action}.
+completely | hoàn toàn | I {completely} forgot.
+affect | ảnh hưởng đến | Does it {affect} you?
+cheap | rẻ | That's really {cheap}.
+receive | nhận | Did you {receive} my email?
+require | yêu cầu | Is a passport {required}?
+street | đường phố | I live on this {street}.
+red | màu đỏ | The {red} one.
+focus | tập trung | I can't {focus}.
+surprise | bất ngờ | What a {surprise}!
+apply | nộp đơn; áp dụng | I {applied} for the job.
+correct | đúng | Is that {correct}?
+various | nhiều loại khác nhau | We tried {various} options.
+bet | cá cược; chắc chắn | I {bet} you're tired.
+normally | thường thì | I {normally} eat at seven.
+purpose | mục đích | What's the {purpose}?
+bus | xe buýt | I take the {bus} to work.
+create | tạo ra | Can you {create} an account?
+true | đúng, thật | Is that {true}?
