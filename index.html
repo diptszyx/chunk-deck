@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}</style>
 <title>Chunk Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,6 +160,8 @@
   }
 </style>
 
+</head>
+<body>
 <div class="app">
   <header class="top">
     <h1>Chunk<span>Deck</span></h1>
@@ -162,7 +170,7 @@
       <span>Đã thuộc <b id="mKnown">0</b>/<b id="mTotal">0</b></span>
     </div>
   </header>
-  <p class="sync" id="syncNote">Tiến độ đang lưu trên trình duyệt này.</p>
+  <p class="sync" id="syncNote">Tiến độ lưu trên trình duyệt này — dùng cùng một trình duyệt để giữ lịch ôn.</p>
 
   <nav class="modes" role="tablist" aria-label="Chế độ luyện">
     <button role="tab" id="tabReview" aria-selected="true">Ôn cụm<small>nhớ lại, rồi nghe</small></button>
@@ -272,8 +280,7 @@
   const LOCAL_KEY = "chunkdeck_progress_v1";
 
   let state = { cards: {}, newDay: "", newCount: 0 };
-  let store = { save: async () => {}, label: "" };
-  let mode = "review";
+    let mode = "review";
 
   const $ = (id) => document.getElementById(id);
   const today = () => new Date().toISOString().slice(0, 10);
@@ -288,13 +295,9 @@
     try { localStorage.setItem(LOCAL_KEY, JSON.stringify(s)); } catch {}
   }
 
-  let writing = Promise.resolve();
   function persist() {
     const snapshot = JSON.parse(JSON.stringify(state));
     saveLocal(snapshot);
-    writing = writing.then(() => store.save(snapshot)).catch(() => {
-      $("syncNote").textContent = "Không lưu được lên tài khoản — tiến độ vẫn nằm trên trình duyệt này.";
-    });
   }
 
   function cardState(id) { return state.cards[id] || null; }
@@ -528,28 +531,8 @@
   renderMeter();
   setMode("review");
 
-  (async () => {
-    if (!window.claude?.use) return;
-    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
-    if (!db || !user) return;
-    const uid = await user.id();
-    if (!uid) return;
-    const ref = db.doc("data/users/" + uid + "/progress");
-    try {
-      const snap = await ref.get();
-      const remote = snap.exists ? snap.data() : null;
-      if (remote && remote.cards && Object.keys(remote.cards).length >= Object.keys(state.cards).length) {
-        state = { cards: remote.cards, newDay: remote.newDay || "", newCount: remote.newCount || 0 };
-        saveLocal(state);
-        renderMeter();
-        if (mode === "review") renderReview();
-      }
-      store = { save: (s) => ref.set(s) };
-      $("syncNote").textContent = "Tiến độ lưu theo tài khoản — mở trên máy khác vẫn giữ lịch ôn.";
-      if (!snap.exists && Object.keys(state.cards).length) persist();
-    } catch {
-      $("syncNote").textContent = "Không kết nối được kho lưu — tiến độ vẫn nằm trên trình duyệt này.";
-    }
-  })();
 })();
 </script>
+
+</body>
+</html>

@@ -93,10 +93,12 @@ still cannot hold a conversation.
 
 ## The app
 
-`index.html` — **Chunk Deck**, published at https://claude.ai/artifact/1B36igYTNS9TdDFGhT8pCf.
-Three modes, one per method above: spaced recall of 72 conversational chunks (Vietnamese prompt →
-say the English aloud → reveal with stressed word marked and browser TTS), dictation with a
-word-level diff, and a 4/3/2 speaking timer. Progress is stored per account in the artifact's
-database (`data/users/<id>/progress`), with `localStorage` as fallback.
+`index.html` — **Chunk Deck**, served by GitHub Pages at https://diptszyx.github.io/chunk-deck/.
+One static file, no build step. Three modes, one per method above: spaced recall of 72
+conversational chunks (Vietnamese prompt → say the English aloud → reveal with the stressed word
+marked and browser TTS), dictation with a word-level diff, and a 4/3/2 speaking timer.
 
-To change the deck, edit the `DECK` array in `index.html` and republish the same file.
+Progress lives in `localStorage`, so it stays with one browser on one device. Clearing site data
+or switching browsers starts the schedule over.
+
+To change the deck, edit the `DECK` array in `index.html` and push.
