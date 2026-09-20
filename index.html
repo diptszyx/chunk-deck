@@ -167,6 +167,13 @@
   .progress span { display: block; height: 100%; background: var(--accent); }
   footer.credit { font-size: 12px; color: var(--ink-faint); max-width: 65ch; }
   footer.credit a { color: var(--ink-dim); }
+  .spine { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 5px; font-size: 15px; }
+  .spine small { color: var(--ink-faint); }
+  textarea.notes {
+    font: 400 15px/1.5 var(--body); width: 100%; min-height: 96px; resize: vertical; padding: 12px;
+    border-radius: 10px; border: 1px solid var(--line); background: var(--ground); color: var(--ink);
+  }
+  .clock.prep { color: var(--stress); }
   .why { font-size: 13px; color: var(--ink-dim); border-top: 1px solid var(--line); padding-top: 14px; margin: 0; max-width: 65ch; }
   .why b { color: var(--ink); }
   .warn { font-size: 13px; color: var(--miss); margin: 0; }
@@ -202,7 +209,7 @@
       <li><b>Từ vựng, 10 phút.</b> Lần đầu, lọc bỏ những từ đã biết. Sau đó mỗi ngày: hết từ đến hạn + tối đa 10 từ mới.</li>
       <li><b>Cụm, 10 phút.</b> Hết cụm đến hạn + tối đa 10 cụm mới. Nói to trước khi mở đáp án.</li>
       <li><b>Nghe chép, 10 phút.</b> Khoảng 15 câu. Chỗ đỏ lặp lại là kiểu âm tai bạn chưa bắt được.</li>
-      <li><b>Nói 4/3/2, khoảng 10 phút.</b> Một chủ đề, đủ ba lần, nói to thành tiếng.</li>
+      <li><b>Nói 4/3/2, khoảng 10 phút.</b> Bấm <i>Chuẩn bị 1 phút</i>, ghi ý theo dàn ý sẵn, rồi nói to đủ ba lần.</li>
       <li><b>Nghe người thật, 5–10 phút.</b> Video tiếng Anh có phụ đề tiếng Anh. Giọng máy trong app không nối âm như người thật; phần này bù vào đó.</li>
     </ol>
     <p>Mỗi phần có nghiên cứu phía sau; <b>số phút là do người làm app chia</b>, không phải giáo trình đã được kiểm chứng. Đều đặn quan trọng hơn dài — ngày bận chỉ làm bước 1 và 2.</p>
@@ -218,26 +225,14 @@
 </div>
 
 <script src="data/chunks.js"></script>
+<script src="data/topics.js"></script>
 <script src="data/words.js"></script>
 <script>
 (() => {
   const CHUNKS = (window.CHUNKS || []).map(([sit, vi, en, reduced], i) => ({ id: "c" + i, sit, vi, en, reduced }));
   const WORDS = (window.WORDS || []).map(([word, vi, example, def], i) => ({ id: "w:" + word, rank: i + 1, word, vi, example, def }));
 
-  const TOPICS = [
-    "Kể về một ngày làm việc bình thường của bạn.",
-    "Một món ăn bạn thích — nó là gì, ăn ở đâu, vì sao thích.",
-    "Nơi bạn đang sống: điểm tốt và điểm chưa tốt.",
-    "Một thứ bạn học được gần đây và vì sao nó hữu ích.",
-    "Kế hoạch của bạn cho năm tới.",
-    "Một bộ phim hay kênh YouTube bạn muốn giới thiệu cho người khác.",
-    "Một quyết định khó bạn từng phải đưa ra.",
-    "Giải thích công việc của bạn cho một người không làm cùng ngành.",
-    "Một chuyến đi đáng nhớ.",
-    "Cuối tuần lý tưởng của bạn trông như thế nào.",
-    "Một người đã ảnh hưởng nhiều đến bạn.",
-    "Một thói quen bạn muốn bỏ, và vì sao khó bỏ.",
-  ];
+  const TOPICS = (window.TOPICS || []).map(([vi, en, spine, phrases]) => ({ vi, en, spine, phrases }));
 
   const INTERVAL_DAYS = [0, 1, 3, 7, 16, 35, 75];
   const KNOWN_BOX = 3;
@@ -514,7 +509,8 @@
     setTimeout(() => say(item.text, 1), 250);
   }
 
-  let timer = null, phase = 0, left = PHASE_SECONDS[0], topic = TOPICS[0];
+  const PREP_SECONDS = 60;
+  let timer = null, phase = 0, left = PHASE_SECONDS[0], topic = TOPICS[0], notes = "", prepping = false;
   const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
   function stopTimer() { if (timer) clearInterval(timer); timer = null; }
   function beep() {
@@ -525,39 +521,71 @@
       o.connect(g).connect(ctx.destination); o.start(); o.stop(ctx.currentTime + 0.25);
     } catch {}
   }
+  function countdown(onTick, onDone) {
+    stopTimer();
+    timer = setInterval(() => {
+      left -= 1;
+      onTick();
+      if (left <= 0) { stopTimer(); beep(); onDone(); }
+    }, 1000);
+  }
   function renderSpeak(newTopic) {
     stopTimer();
-    if (newTopic) { topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]; phase = 0; left = PHASE_SECONDS[0]; }
+    prepping = false;
+    if (newTopic) {
+      topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+      phase = 0; left = PHASE_SECONDS[0]; notes = "";
+    }
     const learned = CHUNKS.filter((c) => (cardState(c.id)?.box || 0) >= 1);
-    const src = learned.length >= 3 ? learned : CHUNKS;
-    const weave = [...src].sort(() => Math.random() - 0.5).slice(0, 3);
+    const weave = [...(learned.length >= 3 ? learned : CHUNKS)].sort(() => Math.random() - 0.5).slice(0, 2);
     const finished = phase >= PHASE_SECONDS.length;
     $("stage").innerHTML = `
       <span class="eyebrow">Chủ đề</span>
-      <p class="topic">${esc(topic)}</p>
-      <div class="phases">${PHASE_SECONDS.map((s, i) =>
-        `<div class="phase" data-state="${i < phase ? "done" : i === phase ? "now" : "next"}">Lần ${i + 1}<b>${fmt(s)}</b></div>`).join("")}</div>
+      <p class="topic">${esc(topic.en)}</p>
+      <p class="hint">${esc(topic.vi)}</p>
+      <span class="eyebrow">Dàn ý — trả lời lần lượt là thành bài nói</span>
+      <ol class="spine">${topic.spine.map(([q, vi]) => `<li>${esc(q)}<br><small>${esc(vi)}</small></li>`).join("")}</ol>
+      <span class="eyebrow">Câu mở sẵn cho chủ đề này</span>
+      <div class="weave">${[...topic.phrases, ...weave.map((c) => plain(c.en))].map((p) => `<span>${esc(p)}</span>`).join("")}</div>
+      <label class="eyebrow" for="notes">Ghi chú của bạn — viết ý, không viết cả câu</label>
+      <textarea class="notes" id="notes" placeholder="start 8am · coffee first · hardest = meetings · would change: fewer calls">${esc(notes)}</textarea>
+      <div class="phases">${PHASE_SECONDS.map((sec, i) =>
+        `<div class="phase" data-state="${i < phase ? "done" : i === phase ? "now" : "next"}">Lần ${i + 1}<b>${fmt(sec)}</b></div>`).join("")}</div>
       <div class="clock" id="clock">${fmt(finished ? 0 : left)}</div>
       <div class="row">
+        ${finished ? "" : `<button class="btn" id="prepBtn">Chuẩn bị 1 phút</button>`}
         <button class="btn primary" id="startBtn">${finished ? "Làm lại" : "Bắt đầu lần " + (phase + 1)}</button>
         <button class="btn" id="endBtn" hidden>Xong lần này</button>
         <button class="btn" id="newTopic">Chủ đề khác</button>
       </div>
-      <span class="eyebrow">Thử cài vào lúc nói</span>
-      <div class="weave">${weave.map((c) => `<span>${esc(plain(c.en))}</span>`).join("")}</div>
-      <p class="hint">Nói to thành tiếng, kể cùng một chuyện cả ba lần, không đổi nội dung. Thời gian ngắn dần buộc bạn dùng cụm có sẵn thay vì dịch từ tiếng Việt. Ở lần 3, để ý xem mình còn ngập ngừng ở chỗ nào — đó là chỗ cần học thêm cụm.</p>`;
+      <p class="hint">Nói to thành tiếng, kể cùng một chuyện cả ba lần, không đổi nội dung. Ghi chú vẫn nằm đó khi nói — nhìn ý, đừng đọc thành câu. Thời gian ngắn dần buộc bạn dùng cụm có sẵn thay vì dịch từ tiếng Việt.</p>`;
+    $("notes").oninput = (e) => { notes = e.target.value; };
     $("newTopic").onclick = () => renderSpeak(true);
-    const endRound = () => { stopTimer(); beep(); phase += 1; left = PHASE_SECONDS[phase] ?? 0; renderSpeak(false); };
+    const endRound = () => { phase += 1; left = PHASE_SECONDS[phase] ?? 0; renderSpeak(false); };
+    const prep = $("prepBtn");
+    if (prep) prep.onclick = () => {
+      prepping = true;
+      left = PREP_SECONDS;
+      prep.disabled = true;
+      $("startBtn").textContent = "Bắt đầu luôn";
+      $("clock").classList.add("prep");
+      $("clock").textContent = fmt(left);
+      $("notes").focus();
+      countdown(() => { $("clock").textContent = fmt(Math.max(left, 0)); },
+        () => { left = PHASE_SECONDS[phase]; renderSpeak(false); });
+    };
     $("startBtn").onclick = () => {
       if (finished) { phase = 0; left = PHASE_SECONDS[0]; renderSpeak(false); return; }
+      stopTimer();
+      prepping = false;
+      $("clock").classList.remove("prep");
+      left = PHASE_SECONDS[phase];
+      $("clock").textContent = fmt(left);
       $("startBtn").disabled = true;
+      if (prep) prep.disabled = true;
       $("endBtn").hidden = false;
-      $("endBtn").onclick = endRound;
-      timer = setInterval(() => {
-        left -= 1;
-        $("clock").textContent = fmt(Math.max(left, 0));
-        if (left <= 0) endRound();
-      }, 1000);
+      $("endBtn").onclick = () => { stopTimer(); beep(); endRound(); };
+      countdown(() => { $("clock").textContent = fmt(Math.max(left, 0)); }, endRound);
     };
   }
 
@@ -565,7 +593,7 @@
     words: "718 từ trong danh sách NGSL-Spoken phủ khoảng <b>90% tiếng Anh nói tự nhiên</b>, xếp từ phổ biến nhất trở xuống. Mỗi từ học trong một câu ngắn: nhìn câu thiếu từ và nghĩa, tự nhớ ra từ, rồi mới xem — tự nhớ lại hiệu quả hơn đọc lại (g = 0.50, Rowland 2014).",
     chunks: "Người bản ngữ nói bằng <b>cụm có sẵn</b>, không ghép từng từ theo luật ngữ pháp (Pawley &amp; Syder 1983). Học cả khối thì lúc nói não không phải xử lý ngữ pháp. Chữ gạch chân màu cam là từ được nhấn — nhấn sai chỗ làm người nghe khó hiểu hơn phát âm sai. Lịch ôn giãn dần 1 → 3 → 7 → 16 → 35 → 75 ngày (Cepeda 2008).",
     dict: "Người đọc tốt thường <b>biết từ nhưng không nhận ra nó khi nghe</b>, vì các từ dính liền và biến âm (Field 2008). Nghe thụ động không sửa được; gõ lại từng chữ rồi đối chiếu thì có.",
-    speak: "Kể cùng một chuyện 3 lần trong 4, 3, rồi 2 phút (Nation 1989). Tốc độ nói tăng và ngập ngừng giảm rõ giữa lần đầu và lần thứ ba — thời gian ngắn dần ép não tự động hoá.",
+    speak: "Kể cùng một chuyện 3 lần trong 4, 3, rồi 2 phút (Nation 1989). Có <b>dàn ý và một phút chuẩn bị</b> vì nghiên cứu về thời gian chuẩn bị trước khi nói cho thấy nó làm tăng độ trôi chảy và độ phức tạp của câu — chủ đề trống không phải là bài tập, chỉ là chỗ bí. Tốc độ nói tăng và ngập ngừng giảm rõ giữa lần đầu và lần thứ ba — thời gian ngắn dần ép não tự động hoá.",
   };
 
   const TABS = { words: "tabWords", chunks: "tabReview", dict: "tabDict", speak: "tabSpeak" };
@@ -583,7 +611,7 @@
   }
   Object.entries(TABS).forEach(([k, id]) => { $(id).onclick = () => setMode(k); });
 
-  if (!CHUNKS.length || !WORDS.length) {
+  if (!CHUNKS.length || !WORDS.length || !TOPICS.length) {
     $("stage").innerHTML = `<p class="warn">Không tải được dữ liệu từ vựng. Tải lại trang.</p>`;
     return;
   }
